@@ -15,12 +15,42 @@ public function __construct()
 	echo "correctly connected to database".PHP_EOL;
 }
 
-public function registerUser($username,$password)
+    public function getClientId($name)
+    {
+	$query = "select id from users where username = '$name';";
+	$results = $this->registerdb->query($query);
+	if (!$results)
+	{
+	    //$this->logger->log("error with results: ".$this->db->error);
+	    return 0;
+	}
+        $client = $results->fetch_assoc();
+	if (isset($client['id']))
+	{
+	    return $client['id'];
+	}
+	return 0;
+    }
+
+
+public function registerUser($username,$password,$fname,$lname,$email)
 {
+    	if ($this->getClientId($username) != 0)
+        {
+            //echo "exist".PHP_EOL;
+	    return "exist";
+	}
+
 	$un = $this->registerdb->real_escape_string($username);
 	$pw = $this->registerdb->real_escape_string($password);
-        $addquery = "insert into users(screenname,password) values ('$un','$pw');";
+	$fn = $this->registerdb->real_escape_string($fname);
+	$ln = $this->registerdb->real_escape_string($lname);
+	$em = $this->registerdb->real_escape_string($email);
+        $addquery = "insert into users(fname,lname,email,username,password) values ('$fn','$ln','$em','$un','$pw');";
 	$this->registerdb->query($addquery);
+	//echo "success".PHP_EOL;
+	return "success";
+	
 }
 }
 ?>
