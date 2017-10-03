@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<form action="signin.php";>
+
+<script>
+
+functon f()
+{
+
+	
+	var ptrUser = document.getElementById("user");
+	var userValue = ptrUser.value;
+	var trimmedUserValue = userValue.trim();
+	
+	var ptrPass = document.getElementById("pass");
+	var passValue = ptrPass.value;
+	var trimmedPassValue = passValue.trim();
+
+}
+
+</script>
+
+
+<fieldset>
+
+<article>
+
+<header>
+
+<h1> <center> Login </center> </h1>
+
+</header>
+
+<center> User &nbsp &nbsp &nbsp &nbsp &nbsp <input type=text name="user"
+	autocomplete = "off"
+	required
+	autofocus = "on"
+	placeholder = "Username"
+	><br><br> </center>
+	
+<center> Password &nbsp <input type=text name="password"
+	autocomplete = "off"
+	required
+	autofocus = "on"
+	placeholder = "Password"
+	><br><br><br> </center>
+
+<center> Don't have an account? Click <a href=file:///C:/Users/Yaghsha/Desktop/IT490/signup.html>here</a> to sign up.<br></center>
+<center> <input type=submit onsubmit="f()"> </center>
+
+<style>
+
+input[type="submit"]
+	
+	{
+	background-color:#f4a341;
+	border-radius: 10px;
+	}
+
+</style>
+
+</fieldset>
+
+</form>
