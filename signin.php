@@ -3,19 +3,15 @@
 
 session_start();
 
-include ("account.php");
-include ("functions.php");
-gateKeeper($_SESSION["logged"]);
+//include ("account.php");
+include ("login.php.inc");
 
+$database = new logindb();
 
-($dbh = mysql_connect ( $hostname, $username, $password ) ) or die ( "Unable to connect to MySQL database" ); 
-mysql_select_db( $project );	
+$name = $_POST["user"]; 
+$pass = $_POST["password"]; 
 
-$name = $_GET["user"]; 
-$pass = $_GET["pass"]; 
-
-
-user ( $name, $password); 
+validateLogin($name, $password); 
 
 ?>
 
@@ -33,7 +29,6 @@ fieldset
 }
 
 </style>
-
 <form action = "TheMovieDatabase.html" >
 
 </form>

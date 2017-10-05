@@ -6,7 +6,7 @@ private $logindb;
 
 public function __construct()
 {
-	$this->logindb = new mysqli("192.168.1.6","root","Moraa","login");
+	$this->logindb = new mysqli("127.0.0.1","root","Moraa","login");
 
 	if ($this->logindb->connect_errno != 0)
 	{
@@ -28,12 +28,15 @@ public function validateLogin($username,$password)
 		echo "checking password for $username".PHP_EOL;
 		if ($row["password"] == $pw)
 		{
-			echo "passwords match for $username".PHP_EOL;
-			return 1;// password match
+			header("Location: index.html");
+			exit(0);
 		}
-		echo "passwords did not match for $username".PHP_EOL;
 	}
-	return 0;//no users matched username
+	echo "<script language='JavaScript'>
+	    alert('Username or Password was entered incorrectly')
+	    location='signin.html'
+	    </script>";
+      exit(0);
 }
 }
 ?>
