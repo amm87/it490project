@@ -12,7 +12,7 @@ public function __construct()
 		echo "Error connecting to database: ".$this->registerdb->connect_error.PHP_EOL;
 		exit(1);
 	}
-	echo "correctly connected to database".PHP_EOL;
+	//echo "correctly connected to database".PHP_EOL;
 }
 
     public function getClientId($name)
@@ -37,9 +37,10 @@ public function registerUser($username,$password,$fname,$lname,$email)
 {
     	if ($this->getClientId($username) != 0)
         {
-            //echo "exist".PHP_EOL;
-	    return "exist";
-	}
+            echo "exist".PHP_EOL;
+            $response=false;
+	    return $response;
+        }
 
 	$un = $this->registerdb->real_escape_string($username);
 	$pw = $this->registerdb->real_escape_string($password);
@@ -49,7 +50,8 @@ public function registerUser($username,$password,$fname,$lname,$email)
         $addquery = "insert into users(fname,lname,email,username,password) values ('$fn','$ln','$em','$un','$pw');";
 	$this->registerdb->query($addquery);
 	//echo "success".PHP_EOL;
-	return "success";
+	$response = true;
+	return $response;
 	
 }
 }
