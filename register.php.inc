@@ -1,4 +1,6 @@
 <?php
+
+include("functions.php");
 class registerDB
 {
 private $registerdb;
@@ -43,7 +45,7 @@ public function registerUser($username,$password,$fname,$lname,$email)
         }
 
 	$un = $this->registerdb->real_escape_string($username);
-	$pw = $this->registerdb->real_escape_string($password);
+	$pw = $this->registerdb->real_escape_string(hashPassword(($password)));
 	$fn = $this->registerdb->real_escape_string($fname);
 	$ln = $this->registerdb->real_escape_string($lname);
 	$em = $this->registerdb->real_escape_string($email);
