@@ -1,54 +1,50 @@
 <!DOCTYPE html5>
 <?php
 
-session_start();
-
 include ("register.php.inc");
-//include ("account.php");
+require_once('path.inc');
+require_once('get_host_info.inc');
+require_once('rabbitMQLib.inc');
 
-$register = $_POST['register'];
-switch($register){
-   case "register":
-   
-        $register = new registerdb();
-	$username = $_POST['newUser'];
-        $email= $_POST['email'];
-	$password = $_POST['newPass'];
-	$fname = $_POST['firstName'];
-	$lname = $_POST['lastName'];
-	$response = $register->registerUser($username,$password,$fname,$lname,$email);
-	if($response === true)
-	{
-	    $response="Account Created"."<p>";
-	    echo $response;
-	}
-	else
-	{
-	$response ="Failed: User exist"."<p>";
-	echo $response;
-	}
-	break;
+
+$name = $_POST['newUser'];
+$email= $_POST['email'];
+$pass = $_POST['newPass'];
+$fname = $_POST['firstName'];
+$lname = $_POST['lastName'];
+
+
+
+$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+
+if (isset($argv[1]))
+{
+  $msg = $argv[1];
+}
+else
+{
+  $msg = "test message";
 }
 
+$request = array();
+$request['type'] = "register";
+$request['username'] = $name;
+$request['password'] = hashPassword($pass);
+$request['fname'] = $fname;
+$request['lname'] = $lname;
+$request['email']= $email;
+$response = $client->send_request($request);
+//$response = $client->publish($request);
 
+$payload = json_encode($response);
+echo $payload;
+if($payload =="true" ){
+    echo "ACCOUNT CREATED BOIII";
+}
 
+else{
+    
+    echo "Username taken dawg";
+}
 
 ?>
-<style>
-
-
-fieldset
-{
-	border-radius: 25px;
-    border: 1px solid #1E90FF;
-    padding: margin; 
-    width: 25%;
-    height: margin;
-	background: purple;
-}
-
-</style>
-
-<form action = "TheMovieDatabase.html" >
-
-</form>

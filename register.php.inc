@@ -1,6 +1,5 @@
 <?php
-
-include("functions.php");
+include('functions.php');
 class registerDB
 {
 private $registerdb;
@@ -34,7 +33,6 @@ public function __construct()
 	return 0;
     }
 
-
 public function registerUser($username,$password,$fname,$lname,$email)
 {
     	if ($this->getClientId($username) != 0)
@@ -45,7 +43,8 @@ public function registerUser($username,$password,$fname,$lname,$email)
         }
 
 	$un = $this->registerdb->real_escape_string($username);
-	$pw = $this->registerdb->real_escape_string(hashPassword(($password)));
+	$pw = $this->registerdb->real_escape_string($password);
+	//$hpw = $this->hashPassword($pw); 
 	$fn = $this->registerdb->real_escape_string($fname);
 	$ln = $this->registerdb->real_escape_string($lname);
 	$em = $this->registerdb->real_escape_string($email);

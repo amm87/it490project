@@ -1,6 +1,7 @@
 <!DOCTYPE html5>
 <?php
 include ("login.php.inc");
+include('functions.php');
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
@@ -20,7 +21,7 @@ else
 $request = array();
 $request['type'] = "login";
 $request['username'] = $name;
-$request['password'] = $pass;
+$request['password'] = hashPassword($pass);
 $request['message'] = $msg;
 $response = $client->send_request($request);
 //$response = $client->publish($request);
@@ -28,6 +29,7 @@ $response = $client->send_request($request);
 $payload = json_encode($response);
 echo $payload;
 if($payload =="true" ){
+    
     echo header("Location: index.html");
 }
 

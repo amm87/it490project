@@ -1,7 +1,5 @@
 <?php
 
-include('functions.php');
-
 class loginDB
 {
 
@@ -24,7 +22,7 @@ public function __construct()
 public function validateLogin($username,$password)
 {
 	$un = $this->logindb->real_escape_string($username);
-	$pw = $this->logindb->real_escape_string(hashPassword(($password)));
+	$pw = $this->logindb->real_escape_string($password);
 	$statement = "select * from users where username = '$un';";
 	$response = $this->logindb->query($statement);
 

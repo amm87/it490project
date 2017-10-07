@@ -4,24 +4,30 @@ require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('login.php.inc');
-
-
+require_once('register.php.inc');
 function doLogin($username,$password)
 {
     $database = new logindb();
     $response = $database->validateLogin($username, $password); 
     if($response ==true){
-    
-        //return header("Location: index.html");
         return true;
     }
     else{
-        // return "<script language='JavaScript'>
-	  //  alert('Username or Password was entered incorrectly')
-	    //location='signin.html'
-	    //</script>"
-	    return false;
+        return false;
     }
+
+}
+
+function doRegister($username,$password,$fname,$lname,$email){
+    $database = new registerdb();
+    $response = $database->registerUser($username,$password,$fname,$lname,$email); 
+    if($response ==true){
+            return true;
+    }
+    else{
+            return false;
+    }
+
 
 }
 
@@ -39,6 +45,8 @@ function requestProcessor($request)
       return doLogin($request['username'],$request['password']);
     case "validate_session":
       return doValidate($request['sessionId']);
+    case "register";
+        return doRegister($request['username'],$request['password'],$request['fname'],$request['lname'],$request['email']);
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
