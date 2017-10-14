@@ -1,4 +1,4 @@
-<!DOCTYPE html5>
+
 <?php
 
 include ("register.php.inc");

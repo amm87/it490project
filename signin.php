@@ -1,4 +1,3 @@
-<!DOCTYPE html5>
 <?php
 include ("login.php.inc");
 include('functions.php');
@@ -37,7 +36,7 @@ else{
     
     echo "<script language='JavaScript'>
 	    alert('Username or Password was entered incorrectly')
-	    location='signin.html'
+	    location='signin.php'
 	    </script>";
 }
 
