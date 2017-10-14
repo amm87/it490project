@@ -152,6 +152,12 @@
     <br /><br />
     <font size="5" color="red">Currently In Theatres</font>
     <br /><br /><br /><br />
+     <?php
+      require_once("movies.php.inc");
+      $db = new moviedb();
+      $db->releasedMovies();
+    ?>
+
     <footer>
         <center>
             <table>

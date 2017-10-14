@@ -4,16 +4,7 @@
   require_once ('/home/shannon/Documents/IT490/it490project/movies.php.inc');
   $db = new moviedb();  
   $data = array();
-  $append = new \Tmdb\Model\Movie\QueryParameter\AppendToResponse(array(
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::ALTERNATIVE_TITLES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::CHANGES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::CREDITS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::IMAGES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::KEYWORDS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::LISTS,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::RELEASES,
-    \Tmdb\Model\Movie\QueryParameter\AppendToResponse::REVIEWS,
-    ));
+  
   $token = new \Tmdb\ApiToken('32878828bcad6134a8ced94250b6fc53');
   $client = new \Tmdb\Client($token);
   $dRepo = new \Tmdb\Repository\DiscoverRepository($client);
@@ -22,7 +13,7 @@
   $movies = $dRepo->discoverMovies($dQuery->page(2));
   foreach ($movies as $movie)
   {
-    $m =  $repository->load($movie->getId(), array($append));
+    $m =  $repository->load($movie->getId());
     $movieTitle = $m->getTitle();
     $movieGenre = $m->getGenres()[0]->getName();
     $releaseDate = $m->getReleaseDate()->format('Y-m-d H-i-s');

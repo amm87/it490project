@@ -37,6 +37,21 @@
     {
       $results = $this->database->query($query);
     }
+     
+    public function releasedMovies()
+    {
+        $query = "select * from movies;";
+        $result = $this->database->query($query);
+       
+        while ($movie = $result->fetch_assoc())
+        {
+          $release = strtotime( $movie["releaseDate"]);
+          if ($release < strtotime("now"))
+          {
+            $this->displayMovie($movie);
+          }
+        }
+    }
 
     public function upcomingMovies($range)
     {
