@@ -10,7 +10,9 @@
   $dRepo = new \Tmdb\Repository\DiscoverRepository($client);
   $dQuery = new \Tmdb\Model\Query\Discover\DiscoverMoviesQuery($data);
   $repository = new \Tmdb\Repository\MovieRepository($client);
-  $movies = $dRepo->discoverMovies($dQuery->page(2));
+  for ($k = 1;;$k++)
+  {
+  $movies = $dRepo->discoverMovies($dQuery->page($k));
   foreach ($movies as $movie)
   {
     $m =  $repository->load($movie->getId());
@@ -29,4 +31,5 @@
  values('$movieTitle', '$movieGenre', '$releaseDate', '$rating', '$image');";
     $db->addMovie($query);
   }
+}
 ?>

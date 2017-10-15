@@ -12,25 +12,52 @@
         echo "Could not connect to database".PHP_EOL;
       }
     }    
-
-    private function displayMovie($movie)
+    
+    private function displayMovies($resultArray, $exclude)
     {
-      $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-      echo "<img src='$path'/><br>";
-      echo $movie['title']."<br>";
-      echo $movie['releaseDate']."<br>";
-      echo "<br>";
+      $counter = 0;
+      $otherCounter = 0;
+      echo "<table>";
+      foreach ($resultArray as $movie)
+      {
+        if (!in_array($movie, $exclude))
+        {
+      
+        if ($counter === 0)
+        {
+          echo "<tr>";
+        }
+        else if ($counter === 4)
+        {
+          echo "</tr>";
+          $counter = 0;
+        }
+
+        echo "<td>";
+        $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+        echo "<a href='http://www.njit.edu'><img src='$path'/></a><br>";
+        echo $movie['title']."<br>";
+        echo $movie['releaseDate'];
+        echo "</td>";
+        
+        $counter++;
+      }
+      }
+      echo "</table>";
     }
  
     public function moviesByGenre($genre)
     {
       $query = "select * from movies where genre = '$genre';";
       $result = $this->database->query($query);
-     
+      $counter = 0;
+      $resultArray = array();
       while ($movie = $result->fetch_assoc())
       {
-        $this->displayMovie($movie);
+        $resultArray[$counter] = $movie;
+        $counter++;
       }
+      $this-> displayMovies($resultArray, array());
     }
     
     public function addMovie($query)
@@ -42,15 +69,21 @@
     {
         $query = "select * from movies;";
         $result = $this->database->query($query);
-       
+        $exclude = array();
+        $resultArray = array();
+        $counter = 0;       
+        
         while ($movie = $result->fetch_assoc())
         {
+          $resultArray[$counter] = $movie;
           $release = strtotime( $movie["releaseDate"]);
-          if ($release < strtotime("now"))
+          if ($release > strtotime("now"))
           {
-            $this->displayMovie($movie);
+            $exclude[$counter] = $movie;
           }
+          $counter++;
         }
+        $this->displayMovies($resultArray, $exclude);
     }
 
     public function upcomingMovies($range)
@@ -59,8 +92,12 @@
       $result = $this->database->query($query);
       $startTime;
       $endTime;
+      $resultArray = array();
+      $exclude = array();
+      $counter = 0;
       while ($movie = $result->fetch_assoc())
       {
+        $resultArray[$counter] = $movie;
         $time = strtotime($movie['releaseDate']);
         
         if ($range === "week")
@@ -79,11 +116,13 @@
           $endTime  =  strtotime("last day of December this year");
         }
 
-        if (($time >= $startTime) && ($time <= $endTime))
+        if (($time <= $startTime) || ($time >= $endTime))
         {
-	  $this->displayMovie($movie);
+          $exclude[$counter] = $movie;
         }
+        $counter++;
       }
+      $this->displayMovies($resultArray, $exclude);
     }
 
     public function moviesByRating($type)
