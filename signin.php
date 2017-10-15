@@ -8,7 +8,7 @@ require_once('rabbitMQLib.inc');
 $name = $_POST["user"]; 
 $pass = $_POST["password"]; 
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
-
+$clientLog = new rabbitMQClient("rabbitMQLog.ini","testServer");
 if (isset($argv[1]))
 {
   $msg = $argv[1];
@@ -29,6 +29,13 @@ $response = $client->send_request($request);
 $payload = json_encode($response);
 echo $payload;
 if($payload =="true" ){
+    
+    
+    
+   /** $logger = new errorLogger("/home/anthony/git/it490project/error.log");
+                $requestLog = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "."Error occured in ".__FILE__." LINE ".__LINE__." not an error lul ".PHP_EOL);
+                
+    $response = $clientLog->publish($requestLog); **/
     
     echo header("Location: index.html");
 }

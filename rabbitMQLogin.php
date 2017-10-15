@@ -37,6 +37,14 @@ function requestProcessor($request)
   var_dump($request);
   if(!isset($request['type']))
   {
+  
+  $clientLog = new rabbitMQClient("rabbitMQLog.ini","testServer");
+  $logger = new errorLogger("/home/anthony/git/it490project/error.log");
+  $requestLog = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "." Error occured in ".__FILE__." LINE ".__LINE__."ERROR: unsupported message type ".PHP_EOL);
+  $response = $clientLog->publish($requestLog);
+  
+  
+    
     return "ERROR: unsupported message type";
   }
   switch ($request['type'])
@@ -51,7 +59,7 @@ function requestProcessor($request)
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
 
-$server = new rabbitMQServer("testRabbitMQ.ini","testServer");
+$server = new rabbitMQServer("rabbitMQLogin.ini","testServer");
 
 $server->process_requests('requestProcessor');
 exit();

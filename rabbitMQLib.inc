@@ -1,7 +1,7 @@
 <?php
 
-require_once('get_host_info.inc');
-
+include_once('get_host_info.inc');
+include_once('logging.php.inc');
 class rabbitMQServer
 {
 	private $machine = "";
@@ -83,7 +83,9 @@ class rabbitMQServer
 		catch(Exception $e)
 		{
 			// ampq throws exception if get fails...
-            echo "error: rabbitMQServer: process_message: exception caught: ".$e;
+                
+			
+                        echo "error: rabbitMQServer: process_message: exception caught: ".$e;
 		}
 		// message does not require a response, send ack immediately
 		$body = $msg->getBody();
@@ -229,6 +231,7 @@ class rabbitMQClient
 		}
 		catch(Exception $e)
 		{
+                        
 			die("failed to send message to exchange: ". $e->getMessage()."\n");
 		}
 	}

@@ -5,7 +5,7 @@ include ("register.php.inc");
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
-
+include_once('functions.php');
 
 $name = $_POST['newUser'];
 $email= $_POST['email'];
