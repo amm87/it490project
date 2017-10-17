@@ -5,6 +5,7 @@
         footer {
             background-color: skyblue;
         }
+
         .button {
             background-color: #4CAF50;
             border: none;
@@ -17,21 +18,9 @@
             margin: 4px 2px;
             cursor: pointer;
         }
-        input[type=text] {
-            width: 130px;
-            box-sizing: border-box;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            background-color: white;
-            background-image: url('searchicon.png');
-            background-position: 10px 10px;
-            background-repeat: no-repeat;
-            padding: 12px 20px 12px 40px;
-            -webkit-transition: width 0.4s ease-in-out;
-            transition: width 0.4s ease-in-out;
-        }
-           
+
+       
+
         .dropbtn {
             background-color: skyblue;
             color: red;
@@ -40,10 +29,12 @@
             border: none;
             cursor: pointer;
         }
+
         .dropdown {
             position: relative;
             display: inline-block;
         }
+
         .dropdown-content {
             display: none;
             position: absolute;
@@ -52,18 +43,22 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
+
             .dropdown-content a {
                 color: black;
                 padding: 12px 16px;
                 text-decoration: none;
                 display: block;
             }
+
                 .dropdown-content a:hover {
                     background-color: #f1f1f1
                 }
+
         .dropdown:hover .dropdown-content {
             display: block;
         }
+
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
@@ -139,47 +134,49 @@
     </table>
     <br /><br />
 
-	<form action="signin.php" method="post">
-	
-    <font size="5" color="red">Sign in</font>
-	<br/><br/>
-	
-	<center> <font size="3" color="red"> User </font> <input type=text name="user"/> 
-	<br><br> </center>
-	
-	<center><font size="3" color="red"> Password </font> <input type="password" name="password"/>
-	<br><br><br> </center>
+    <form action="signin.php" method="post">
 
-<center> Don't have an account? Click <a href=signup.html>here</a> to sign up.<br></center>
-<<<<<<< HEAD
-<center> 	<a href="signin.php"  class="button">Submit</a>	
-=======
-<center> 	<input type= submit onsubmit="f()">	
->>>>>>> 1467d7a2693291d8d8eca692295d9c0c81873869
- </center>
-	
-
-    <br /><br /><br /><br />
-    <footer>
-        <center>
-            <table>
-                <tr>
-                    <td style="padding:0 15px 0 40px;">Home</td>
-                    <td style="padding:0 15px 0 40px;">About</td>
-                    <td style="padding:0 15px 0 40px;">Support</td>
-                    <td style="padding:0 15px 0 40px;">Terms</td>
-                    <td style="padding:0 15px 0 40px;">Privacy</td>
-                    <td style="padding:0 15px 0 40px;">Login</td>
-                    <td style="padding:0 15px 0 40px;">Signup</td>
-                </tr>
-            </table>
-        </center>
+    <center> <font size="5" color="red"><b>Sign in</b></font> </center>
         <br /><br />
-        <center>By: Manish Singh, Anthony Morales, Shanon Hargrave, Brian Omoni, Yaghsha Shah</center>
-        <br />
-        <center>Contact information: <a href="mailto:GFY@njit.edu">GFY@njit.edu</a>.</center>
-        <br />
-        <center>Copyright Because I Said So! All Rights SUYA</center>
-    </footer>
+
+        <center>
+            <font size="3" color="red"> User &nbsp &nbsp &nbsp &nbsp &nbsp </font> <input type=text name="user" />
+            <br><br>
+        </center>
+
+        <center>
+            <font size="3" color="red"> Password &nbsp </font> <input type="password" name="password" />
+            <br><br><br>
+        </center>
+
+        <center> Don't have an account? Click <a href=signup.html>here</a> to sign up.<br></center>
+
+        <center>
+            <a href="signin.php" class="button">Submit</a>
+    
+
+
+            <br /><br /><br /><br />
+            <footer>
+                <center>
+                    <table>
+                        <tr>
+                            <td style="padding:0 15px 0 40px;">Home</td>
+                            <td style="padding:0 15px 0 40px;">About</td>
+                            <td style="padding:0 15px 0 40px;">Support</td>
+                            <td style="padding:0 15px 0 40px;">Terms</td>
+                            <td style="padding:0 15px 0 40px;">Privacy</td>
+                            <td style="padding:0 15px 0 40px;">Login</td>
+                            <td style="padding:0 15px 0 40px;">Signup</td>
+                        </tr>
+                    </table>
+                </center>
+                <br /><br />
+                <center>By: Manish Singh, Anthony Morales, Shanon Hargrave, Brian Omoni, Yaghsha Shah</center>
+                <br />
+                <center>Contact information: <a href="mailto:GFY@njit.edu">GFY@njit.edu</a>.</center>
+                <br />
+                <center>Copyright Because I Said So! All Rights SUYA</center>
+            </footer>
 </body>
 </html>
