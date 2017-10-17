@@ -37,14 +37,17 @@ $response = $client->send_request($request);
 //$response = $client->publish($request);
 
 $payload = json_encode($response);
-echo $payload;
+//echo $payload;
 if($payload =="true" ){
-    echo "ACCOUNT CREATED BOIII";
+    echo "ACCOUNT CREATED";
 }
 
 else{
     
-    echo "Username taken dawg";
+    echo "<script language='JavaScript'>
+	    alert('Username is taken')
+	    location='signup.html'
+	    </script>";
 }
 
 ?>
