@@ -83,9 +83,13 @@ class rabbitMQServer
 		catch(Exception $e)
 		{
 			// ampq throws exception if get fails...
-                
+                        $clientLog = new rabbitMQClient("rabbitMQLog.ini","testServer");
+                        $logger = new errorLogger("/home/anthony/git/it490project/error.log");
+                        $requestLog = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "." Error occured in ".__FILE__." LINE ".__LINE__." error: rabbitMQServer: process_message: exception caught: ".$e.PHP_EOL);
+                        $response = $clientLog->publish($requestLog);
+  
 			
-                        echo "error: rabbitMQServer: process_message: exception caught: ".$e;
+                        //echo "error: rabbitMQServer: process_message: exception caught: ".$e;
 		}
 		// message does not require a response, send ack immediately
 		$body = $msg->getBody();
@@ -131,6 +135,11 @@ class rabbitMQServer
 		}
 		catch (Exception $e)
 		{
+                        $clientLog = new rabbitMQClient("rabbitMQLog.ini","testServer");
+                        $logger = new errorLogger("/home/anthony/git/it490project/error.log");
+                        $requestLog = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "." Error occured in ".__FILE__." LINE ".__LINE__." Failed to start request processor: ".$e.PHP_EOL);
+                        $response = $clientLog->publish($requestLog);
+  
 			trigger_error("Failed to start request processor: ".$e,E_USER_ERROR); 
 		}
 	}
@@ -231,7 +240,12 @@ class rabbitMQClient
 		}
 		catch(Exception $e)
 		{
-                        
+		
+                        $clientLog = new rabbitMQClient("rabbitMQLog.ini","testServer");
+                        $logger = new errorLogger("/home/anthony/git/it490project/error.log");
+                        $requestLog = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "." Error occured in ".__FILE__." LINE ".__LINE__." Failed to send message ".PHP_EOL);
+                        $response = $clientLog->publish($requestLog);
+  
 			die("failed to send message to exchange: ". $e->getMessage()."\n");
 		}
 	}
@@ -267,6 +281,11 @@ class rabbitMQClient
 		}
 		catch(Exception $e)
 		{
+                        $clientLog = new rabbitMQClient("rabbitMQLog.ini","testServer");
+                        $logger = new errorLogger("/home/anthony/git/it490project/error.log");
+                        $requestLog = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "." Error occured in ".__FILE__." LINE ".__LINE__." Failed to send message to exchange ".PHP_EOL);
+                        $response = $clientLog->publish($requestLog);
+  
 			die("failed to send message to exchange: ". $e->getMessage()."\n");
 		}
 	}

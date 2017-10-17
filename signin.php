@@ -27,7 +27,7 @@ $response = $client->send_request($request);
 //$response = $client->publish($request);
 
 $payload = json_encode($response);
-echo $payload;
+//echo $payload;
 if($payload =="true" ){
     
     
@@ -36,7 +36,6 @@ if($payload =="true" ){
                 $requestLog = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "."Error occured in ".__FILE__." LINE ".__LINE__." not an error lul ".PHP_EOL);
                 
     $response = $clientLog->publish($requestLog); **/
-    
     echo header("Location: index.html");
 }
 
