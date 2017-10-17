@@ -1,5 +1,5 @@
 <?php
-include('functions.php');
+include_once('logging.php.inc');
 class registerDB
 {
 private $registerdb;
@@ -10,7 +10,9 @@ public function __construct()
 
 	if ($this->registerdb->connect_errno != 0)
 	{
-		echo "Error connecting to database: ".$this->registerdb->connect_error.PHP_EOL;
+                $logger = new errorLogger("/home/anthony/git/it490project/error.log");
+                $request = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "."Error occured in ".__FILE__." LINE ".__LINE__." Error connecting to database: ".$this->logindb->connect_error.PHP_EOL);
+
 		exit(1);
 	}
 	//echo "correctly connected to database".PHP_EOL;

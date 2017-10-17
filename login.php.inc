@@ -1,8 +1,7 @@
 <?php
-
+include_once('logging.php.inc');
 class loginDB
 {
-
 
 private $logindb;
 private $salt;
@@ -13,10 +12,16 @@ public function __construct()
 
 	if ($this->logindb->connect_errno != 0)
 	{
-		echo "Error connecting to database: ".$this->logindb->connect_error.PHP_EOL;
+	
+                $clientLog = new rabbitMQClient("rabbitMQLog.ini","testServer");
+                $logger = new errorLogger("/home/anthony/git/it490project/error.log");
+                $requestLog = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "."Error occured in ".__FILE__." LINE ".__LINE__."Error connecting to database:  ".PHP_EOL);
+                $response = $clientLog->publish($requestLog);
+  
+		//echo "Error connecting to database: ".$this->logindb->connect_error.PHP_EOL;
 		exit(1);
 	}
-	echo "correctly connected to database".PHP_EOL;
+	//echo "correctly connected to database".PHP_EOL;
 }
 
 public function validateLogin($username,$password)
@@ -39,7 +44,7 @@ public function validateLogin($username,$password)
 	 //   alert('Username or Password was entered incorrectly')
 	  //  location='signin.html'
 	  //  </script>";
-	  echo "wrong pass";
+	 // echo "wrong pass";
       return false; 
 }
 }
