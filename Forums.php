@@ -20,7 +20,7 @@
         }
 
         input[type=text] {
-            width: 130px;
+            width: 180px;
             box-sizing: border-box;
             border: 2px solid #ccc;
             border-radius: 4px;
@@ -35,7 +35,7 @@
         }
 
             input[type=text]:focus {
-                width: 100%;
+                width: 85%;
             }
 
         .dropbtn {
@@ -84,6 +84,16 @@
     <title>The Movie Database</title>
 </head>
 <body>
+    <script>
+        function submitter()
+        {
+            var para = document.createElement("P");
+            var t = document.createTextNode(document.getElementById("typer").value);
+            document.getElementById("typer").value="";
+            para.appendChild(t);
+            document.getElementById("demo").appendChild(para);
+        }
+    </script>
     <font color="Red" size="5">The Movie Database</font>
     <p align="right">
         <a href="signin.php" class="button">Login</a>
@@ -151,7 +161,12 @@
     </table>
     <br /><br />
     <font size="5" color="red">Forums</font>
-    <br /><br /><br /><br />
+    <br />
+    <p id="demo"></p>
+    
+    <input type="text" id="typer" placeholder="Type Here">
+    <button type="submit" name="submitting" onclick="submitter()">Enter</button>
+    <br /><br />
     <footer>
         <center>
             <table>
@@ -169,7 +184,8 @@
         <br /><br />
         <center>By: Manish Singh, Anthony Morales, Shanon Hargrave, Brian Omoni, Yaghsha Shah</center>
         <br />
-        <center>Contact information: <a href="mailto:GFY@njit.edu">GFY@njit.edu</a>.</center>
+        <center>Contact information: 
+        <a href="mailto:GFY@njit.edu">GFY@njit.edu</a>.</center>
         <br />
         <center>Copyright Because I Said So! All Rights SUYA</center>
     </footer>
