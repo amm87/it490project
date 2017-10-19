@@ -7,7 +7,7 @@
 
     public function __construct()
     {
-      $this->database = new mysqli('127.0.0.1', 'root', '123456', 'it490');
+      $this->database = new mysqli('127.0.0.1', 'root', 'abc123', 'it490');
       
       if ($this->database->connect_errno > 0)
       {
@@ -15,6 +15,18 @@
       }
     }    
     
+    public function showMovieInfo($movieId)
+    {
+      $query = "select * from movies where movieId = '$movieId'";
+      $result = $this->database->query($query);
+      $movie = $result->fetch_assoc();
+      $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+      echo "<a href='Forums.php?type=2&movieid=".$movie["movieId"]."'><img src='$path'/></a><br>";
+      echo $movie['title']."<br>";
+      echo $movie['releaseDate']."<br><br>";
+
+    }
+
     private function displayMovies($resultArray, $exclude)
     {
       $counter = 0;

@@ -26,9 +26,10 @@ public function getComments($movieId)
       while ($row = $result->fetch_assoc())
       {
         echo $row['comment'];
+        echo "<br>";
+        echo "<br>";
       }
     }
-
 
 public function writeComment($comment, $movieId)
 {

@@ -97,22 +97,6 @@
             para.appendChild(t);
             document.getElementById("demo").appendChild(para);
         }
-        <?php
-            require_once("registerforum.php.inc");
-            $db = new forumsdb();
-            $type = $_GET['type'];
-            if ($type === "1")
-            {
-            $id = $_GET['movieid'];
-            $comment = $_GET['name'];
-            $db->writeComment($comment, $id);
-            }
-            else if ($type === "2")
-            {
- 	      $movieid = $_GET['movieid'];
-              $db->getComments($movieid);
-            }
-        ?>
     </script>
     <font color="Red" size="5">The Movie Database</font>
     <p align="right">
@@ -197,6 +181,29 @@
     <br /><br />
     <font size="5" color="red">Forums</font>
     <br />
+        <?php
+            require_once("movies.php.inc");
+            require_once("registerforum.php.inc");
+            $db = new forumsdb();
+            $db2 = new moviedb();
+
+            $type = $_GET['type'];
+            if ($type === "1")
+            {
+            $id = $_GET['movieid'];
+            $db2->showMovieInfo($id);
+            $comment = $_GET['name'];
+            $db->writeComment($comment, $id);
+            $db->getComments($id);
+            }
+            else if ($type === "2")
+            {
+ 	      $movieid = $_GET['movieid'];
+              $db2->showMovieInfo($movieid);
+
+              $db->getComments($movieid);
+            }
+        ?>
     <p id="demo"></p>
     
     <input type="text" id="typer" placeholder="Type Here" style="width: 1400px;" accesskey="Enter">
