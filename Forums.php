@@ -19,7 +19,7 @@
             cursor: pointer;
         }
 
-        input[type=text] {
+        .input[type=text] {
             width: 180px;
             box-sizing: border-box;
             border: 2px solid #ccc;
@@ -34,7 +34,7 @@
             transition: width 0.4s ease-in-out;
         }
 
-            input[type=text]:focus {
+            .input[type=text]:focus {
                 width: 85%;
             }
 
@@ -156,7 +156,7 @@
                         <a href="MostPopular.php"><font size="2">Most Popular</font></a>
                     </div>
             </td>
-            <td style="padding:0 15px 0 250px;"><input type="text" name="search" placeholder="Search.."></td>
+            <td style="padding:0 15px 0 250px;"><input class="input" type="text" name="search" placeholder="Search.."></td>
         </tr>
     </table>
     <br /><br />
@@ -164,7 +164,7 @@
     <br />
     <p id="demo"></p>
     
-    <input type="text" id="typer" placeholder="Type Here">
+    <input type="text" id="typer" placeholder="Type Here" style="width: 1400px;" accesskey="Enter">
     <button type="submit" name="submitting" onclick="submitter()">Enter</button>
     <br /><br />
     <footer>
