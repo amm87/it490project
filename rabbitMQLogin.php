@@ -9,11 +9,8 @@ require_once('movies.php.inc');
 function showMovies($type, $value="")
 {
   $db = new moviedb();
-  $response;
-  if ($type === "genre")
-  {
-    $response = $db->moviesByGenre($value);
-  }
+  $response = false;
+  $response = $db->moviesByGenre("Action");
   return $response;
 }
 
