@@ -1,9 +1,0 @@
-<td style="padding:0 15px 0 40px;">
-                <div class="dropdown">
-                    <button class="dropbtn"><b>My Account</b></button>
-                    <div class="dropdown-content">
-                        <a href="Watchlist.php"><font size="2">Watchlist</font></a>
-                        <a href="Notifcation.php"><font size="2">Notifcations</font></a>
-                    </div>
-            </td>
-
