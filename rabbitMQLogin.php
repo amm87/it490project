@@ -1,6 +1,5 @@
 #!/usr/bin/php
 <?php
-session_start();
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('login.php.inc');

@@ -1,4 +1,7 @@
 <?php
+   require_once('path.inc');
+    require_once('get_host_info.inc');
+    require_once('rabbitMQLib.inc');
 
   class moviedb
   {
@@ -7,40 +10,46 @@
 
     public function __construct()
     {
-      $this->database = new mysqli('192.168.1.5', 'root', '123456', 'it490project');
+      $this->database = new mysqli('127.0.0.1', 'root', 'abc123', 'it490');
       
       if ($this->database->connect_errno > 0)
       {
         echo "Could not connect to database".PHP_EOL;
       }
+      $this->client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
     }    
     
     private function displayMovies($resultArray, $exclude)
     {
       $counter = 0;
       $otherCounter = 0;
-      $result = array();
+      echo "<table>";
       foreach ($resultArray as $movie)
       {
-        
         if (!in_array($movie, $exclude))
         {
-            $result[$otherCounter] = $movie;
-            $otherCounter++;    
+      
+        if ($counter === 0)
+        {
+          echo "<tr>";
         }
-      }
-      $response = json_encode($result);
-      return $response;
-    }
+        else if ($counter === 4)
+        {
+          echo "</tr>";
+          $counter = 0;
+        }
 
-    public function getComments($movieId)
-    {
-      $query = "select * from moviecomments where movieId = '$movieId'";
-      $result = $this->database->query($query);
-      while ($row = $result->fetch_assoc())
-      {
- 	echo $row['comment'];
+        echo "<td>";
+        $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+        echo "<a href='forums.php'><img src='$path'/></a><br>";
+        echo $movie['title']."<br>";
+        echo $movie['releaseDate'];
+        echo "</td>";
+        
+        $counter++;
       }
+      }
+      echo "</table>";
     }
  
     public function moviesByGenre($genre)
@@ -50,13 +59,26 @@
       $counter = 0;
       $resultArray = array();
       $request = array();
+      $request['type'] = "genre";
+      $request['genre'] = $genre;
+      $response = $this->client->send_request($request);
+      $payload = json_encode($response);
 
+      if ($payload === "true")
+      {
         while ($movie = $result->fetch_assoc())
         {
           $resultArray[$counter] = $movie;
           $counter++;
         }
-        return  $this->displayMovies($resultArray, array());
+        $this-> displayMovies($resultArray, array());
+        return true;
+      }
+      else 
+      {
+        echo "Shit didn't work";
+      }
+      return false;
     }
     
     public function addMovie($query)
@@ -128,5 +150,28 @@
     {
       
     }
+    
+   public function notifications()
+    {
+        $query = "select * from movies;";
+        $result = $this->database->query($query);
+        $exclude = array();
+        $resultArray = array();
+        $counter = 0;
+
+        while ($movie = $result->fetch_assoc())
+        {
+          $resultArray[$counter] = $movie;
+          $release = strtotime( $movie["releaseDate"]);
+          if ($release > strtotime("now"))
+          {
+            $exclude[$counter] = $movie;
+          }
+          $counter++;
+        }
+        $this->displayMovies($resultArray, $exclude);
+    }
+
+    
   }
 ?>

@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+
 <html>
 <head>
     <style>
         footer {
             background-color: skyblue;
         }
-
         .button {
             background-color: #4CAF50;
             border: none;
@@ -18,9 +17,6 @@
             margin: 4px 2px;
             cursor: pointer;
         }
-
-
-
         .dropbtn {
             background-color: skyblue;
             color: red;
@@ -29,12 +25,10 @@
             border: none;
             cursor: pointer;
         }
-
         .dropdown {
             position: relative;
             display: inline-block;
         }
-
         .dropdown-content {
             display: none;
             position: absolute;
@@ -43,22 +37,18 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
-
             .dropdown-content a {
                 color: black;
                 padding: 12px 16px;
                 text-decoration: none;
                 display: block;
             }
-
                 .dropdown-content a:hover {
                     background-color: #f1f1f1
                 }
-
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
@@ -79,8 +69,9 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Upcoming</b></button>
                     <div class="dropdown-content">
-                        <a href="ThisMonth.php"><font size="2">In the Month</font></a>
-                        <a href="YearLineups.php"><font size="2">Year Linups</font></a>
+                       
+                        <a href="ThisMonth.html"><font size="2">In the Month</font></a>
+                        <a href="YearLineups.html"><font size="2">Year Linups</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 40px;">
@@ -88,7 +79,7 @@
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
                         <a href="InTheatres.php"><font size="2">In Theatres</font></a>
-                        <a href="LatestTrailers.php"><font size="2">Latest Trailers</font></a>
+                        <a href="LatestTrailers.html"><font size="2">Latest Trailers</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 40px;">
@@ -149,21 +140,14 @@
     </table>
     <br /><br />
 
- 
-
-        <font size="5" color="red"><b>Watchlist</b></font> 
+       <font size="5" color="red"><b>Notifications</b></font> 
         <br /><br />
             <br /><br /><br /><br />
 
         <?php
-
-        //require_once("movies.php.inc");
-       // require_once("watchlist.php.inc");
-        
-        //$db = new watchdb();
-        //$db = new moviedb();
-        //$db->watchlist();
-        //echo $db-> getWatch($_SESSION['id']);
+        require_once("movies.php.inc");
+        $db = new moviedb();
+        $db->upcomingMovies("week");
         ?>
 
             <footer>

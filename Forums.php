@@ -126,7 +126,7 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Upcoming</b></button>
                     <div class="dropdown-content">
-                        <a href="ThisWeek.php"><font size="2">This Week</font></a>
+                       
                         <a href="ThisMonth.php"><font size="2">In the Month</font></a>
                         <a href="YearLineups.php"><font size="2">Year Linups</font></a>
                     </div>
@@ -181,7 +181,7 @@
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
                         <a href="Watchlist.php"><font size="2">Watchlist</font></a>
-                        <a href="Notification.php"><font size="2">Notiifcations</font></a>
+                        <a href="Notification.php"><font size="2">Notifcations</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 250px;">

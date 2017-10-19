@@ -96,7 +96,7 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Upcoming</b></button>
                     <div class="dropdown-content">
-                       
+                        <a href="ThisWeek.php"><font size="2">This Week</font></a>
                         <a href="ThisMonth.php"><font size="2">In the Month</font></a>
                         <a href="YearLineups.php"><font size="2">Year Linups</font></a>
                     </div>
@@ -147,34 +147,13 @@
                     </div>
             </td>
 
-	<td style="padding:0 15px 0 40px;">
-                <div class="dropdown">
-                    <button class="dropbtn"><b>My Account</b></button>
-                    <div class="dropdown-content">
-                        <a href="Watchlist.php"><font size="2">Watchlist</font></a>
-                        <a href="Notification.php"><font size="2">Notifications</font></a>
-                    </div>
-            </td>
 
-            <td style="padding:0 15px 0 250px;">
-
-		<form action="search.php" method="post">
-                <form>
-                <input type="text" name="search" placeholder="Search..">
-                </form>
-
-	</td>
+            <td style="padding:0 15px 0 250px;"><input type="text" name="search" placeholder="Search.."></td>
         </tr>
     </table>
     <br /><br />
-    <font size="5" color="red">Romance</font>
+    <font size="5" color="red">Latest Trailers</font>
     <br /><br /><br /><br />
-     <?php
-      require_once("movies.php.inc");
-      $db = new moviedb();
-      $db->moviesByGenre("Romance");
-    ?>
-
     <footer>
         <center>
             <table>
