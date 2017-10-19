@@ -144,7 +144,7 @@
     </table>
     <br /><br />
 
-    <form action="signin.php" method="post">
+ 
 
         <center> <font size="5" color="red"><b>Watchlist</b></font> </center>
         <br /><br />
