@@ -91,8 +91,18 @@
             var t = document.createTextNode(document.getElementById("typer").value);
             document.getElementById("typer").value="";
             para.appendChild(t);
+            window.location.href = "Forums.php?name=" + para;
             document.getElementById("demo").appendChild(para);
         }
+        <?php
+            require_once("registerforum.php.inc");
+            $db = new forumsdb();
+            $comment = $_GET['name'];
+            if (isset($comment))
+            {
+            $db->writeComment($comment);
+            }
+        ?>
     </script>
     <font color="Red" size="5">The Movie Database</font>
     <p align="right">
