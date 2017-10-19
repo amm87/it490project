@@ -170,6 +170,7 @@
       $response = $client->send_request($request);
       $r = json_decode($response, true);
       echo "<table>";
+      $counter = 0;
       foreach ($r as $movie)
       {
         if ($counter === 0)
@@ -184,7 +185,7 @@
 
         echo "<td>";
         $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-        echo "<a href='Forums.php'><img src='$path'/></a><br>";
+        echo "<a href='Forums.php?type=2&movieid=".$movie["movieId"]."'><img src='$path'/></a><br>";
         echo $movie['title']."<br>";
         echo $movie['releaseDate'];
         echo "</td>";

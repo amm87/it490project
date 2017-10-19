@@ -7,7 +7,7 @@
 
     public function __construct()
     {
-      $this->database = new mysqli('127.0.0.1', 'root', '123456', 'it490');
+      $this->database = new mysqli('127.0.0.1', 'root', 'abc123', 'it490');
       
       if ($this->database->connect_errno > 0)
       {
@@ -31,6 +31,16 @@
       }
       $response = json_encode($result);
       return $response;
+    }
+
+    public function getComments($movieId)
+    {
+      $query = "select * from moviecomments where movieId = '$movieId'";
+      $result = $this->database->query($query);
+      while ($row = $result->fetch_assoc())
+      {
+ 	echo $row['comment'];
+      }
     }
  
     public function moviesByGenre($genre)
