@@ -153,9 +153,12 @@
         <?php
 
         require_once("movies.php.inc");
-        $db = new moviedb();
-        $db->watchlist();
-
+        require_once("watchlist.php.inc");
+        
+        $db = new watchdb();
+        //$db = new moviedb();
+        //$db->watchlist();
+        echo $db-> getWatch($_SESSION['id']);
         ?>
 
             <footer>

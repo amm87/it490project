@@ -1,5 +1,6 @@
 #!/usr/bin/php
 <?php
+session_start();
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('login.php.inc');
@@ -20,6 +21,8 @@ function doLogin($username,$password)
     $database = new logindb();
     $response = $database->validateLogin($username, $password); 
     if($response ==true){
+        //$_SESSION['user'] = $username;
+        //$_SESSION['id'] = $database->getClientId($username);
         return true;
     }
     else{
