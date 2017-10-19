@@ -7,7 +7,9 @@ namespace Composer\Autoload;
 class ComposerStaticInitff5858eec79f14048ccf2a24d3e23161
 {
     public static $files = array (
-        'ad155f8f1cf0d418fe49e248db8c661b' => __DIR__ . '/..' . '/react/promise/src/functions_include.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -20,26 +22,30 @@ class ComposerStaticInitff5858eec79f14048ccf2a24d3e23161
             'Symfony\\Component\\OptionsResolver\\' => 34,
             'Symfony\\Component\\EventDispatcher\\' => 34,
         ),
-        'R' => 
-        array (
-            'React\\Promise\\' => 14,
-        ),
         'P' => 
         array (
             'Psr\\Log\\' => 8,
+            'Psr\\Http\\Message\\' => 17,
+            'PhpAmqpLib\\' => 11,
+        ),
+        'K' => 
+        array (
+            'Kevinrob\\GuzzleCache\\' => 21,
         ),
         'G' => 
         array (
-            'GuzzleHttp\\Subscriber\\Retry\\' => 28,
-            'GuzzleHttp\\Subscriber\\Log\\' => 26,
-            'GuzzleHttp\\Subscriber\\Cache\\' => 28,
-            'GuzzleHttp\\Stream\\' => 18,
-            'GuzzleHttp\\Ring\\' => 16,
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
         ),
         'D' => 
         array (
             'Doctrine\\Common\\Cache\\' => 22,
+        ),
+        'C' => 
+        array (
+            'Concat\\Http\\Middleware\\Test\\' => 28,
+            'Concat\\Http\\Middleware\\' => 23,
         ),
     );
 
@@ -56,33 +62,30 @@ class ComposerStaticInitff5858eec79f14048ccf2a24d3e23161
         array (
             0 => __DIR__ . '/..' . '/symfony/event-dispatcher',
         ),
-        'React\\Promise\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/react/promise/src',
-        ),
         'Psr\\Log\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
         ),
-        'GuzzleHttp\\Subscriber\\Retry\\' => 
+        'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/retry-subscriber/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
         ),
-        'GuzzleHttp\\Subscriber\\Log\\' => 
+        'PhpAmqpLib\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/log-subscriber/src',
+            0 => __DIR__ . '/..' . '/php-amqplib/php-amqplib/PhpAmqpLib',
         ),
-        'GuzzleHttp\\Subscriber\\Cache\\' => 
+        'Kevinrob\\GuzzleCache\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/cache-subscriber/src',
+            0 => __DIR__ . '/..' . '/kevinrob/guzzle-cache-middleware/src',
+            1 => __DIR__ . '/..' . '/kevinrob/guzzle-cache-middleware/tests',
         ),
-        'GuzzleHttp\\Stream\\' => 
+        'GuzzleHttp\\Psr7\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/streams/src',
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
         ),
-        'GuzzleHttp\\Ring\\' => 
+        'GuzzleHttp\\Promise\\' => 
         array (
-            0 => __DIR__ . '/..' . '/guzzlehttp/ringphp/src',
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
         ),
         'GuzzleHttp\\' => 
         array (
@@ -91,6 +94,14 @@ class ComposerStaticInitff5858eec79f14048ccf2a24d3e23161
         'Doctrine\\Common\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/cache/lib/Doctrine/Common/Cache',
+        ),
+        'Concat\\Http\\Middleware\\Test\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rtheunissen/guzzle-log-middleware/tests',
+        ),
+        'Concat\\Http\\Middleware\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rtheunissen/guzzle-log-middleware/src',
         ),
     );
 

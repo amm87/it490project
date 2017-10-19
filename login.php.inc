@@ -1,5 +1,4 @@
 <?php
-session_start();
 class loginDB
 {
 
@@ -31,8 +30,6 @@ public function validateLogin($username,$password)
 		//echo "checking password for $username".PHP_EOL;
 		if ($row["password"] == $pw)
 		{
-			$_SESSION['username'] = $un;
-			$_SESSION['userId'] = $row['userId'];
 			//header("Location: index.html");
 			return true;
 		}

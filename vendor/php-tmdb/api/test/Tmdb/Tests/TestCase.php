@@ -87,11 +87,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
     public function getAdapterMock()
     {
-        if (!$this->adapter) {
-            $this->adapter = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
-        }
-
-        return $this->adapter;
+        return $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
     }
 
     /**
@@ -102,7 +98,7 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     protected function getMockedTmdbClient()
     {
         $token   = new ApiToken('abcdef');
-        $adapter = $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface');
+        $adapter = $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface');
 
         return $this->_client = new Client($token, ['adapter' => $adapter]);
     }
@@ -119,8 +115,8 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
         return $this->_client = new HttpClient(
             $baseUrl,
             $options,
-            $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
-            $this->getMock('Symfony\Component\EventDispatcher\EventDispatcher')
+            $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
+            $this->createMock('Symfony\Component\EventDispatcher\EventDispatcher')
         );
     }
 
@@ -136,20 +132,20 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
             $methods[] = 'send';
         }
 
-        return $this->getMock('Guzzle\Http\Client', $methods);
+        return $this->getMockBuilder('Guzzle\Http\Client')->setMethods($methods)->getMock();
     }
 
     /**
      * Get the expected request that will deliver a response
      *
-     * @param $path
+     * @param  string  $url
      * @param  array   $parameters
      * @param  string  $method
      * @param  array   $headers
      * @param  null    $body
      * @return Request
      */
-    protected function getRequest($path, $parameters = [], $method = 'GET', $headers = [], $body = null)
+    protected function getRequest($url, $parameters = [], $method = 'GET', $headers = [], $body = null)
     {
         if (
             $method == 'POST'  ||
@@ -164,6 +160,13 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
 
         $headers['Accept']     = 'application/json';
         $headers['User-Agent'] = sprintf('wtfzdotnet/php-tmdb-api (v%s)', Client::VERSION);
+
+        $baseUrl = 'https://api.themoviedb.org/3/';
+        if (strpos($url, $baseUrl) === 0) {
+            $path = substr($url, strlen($baseUrl));
+        } else {
+            $path = $url;
+        }
 
         $request = new Request(
             $path,
@@ -188,9 +191,9 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
                 'path'    => sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'php-tmdb-api.log',
                 'subscriber' => null
             ],
-            'adapter' => $this->getMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
+            'adapter' => $this->createMock('Tmdb\HttpClient\Adapter\AdapterInterface'),
             'host'    => 'api.themoviedb.org/3/',
-            'base_url' => 'https://api.themoviedb.org/3/',
+            'base_url' => $baseUrl,
             'session_token' => null,
             'event_dispatcher' => $this->eventDispatcher
         ]));

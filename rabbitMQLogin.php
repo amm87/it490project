@@ -1,10 +1,22 @@
 #!/usr/bin/php
 <?php
-require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 require_once('login.php.inc');
 require_once('register.php.inc');
+require_once('movies.php.inc');
+
+function showMovies($type, $value="")
+{
+  $db = new moviedb();
+  $response;
+  if ($type === "genre")
+  {
+    $response = $db->moviesByGenre($value);
+  }
+  return $response;
+}
+
 function doLogin($username,$password)
 {
     $database = new logindb();
@@ -41,6 +53,8 @@ function requestProcessor($request)
   }
   switch ($request['type'])
   {
+    case "genre":
+      return showMovies("genre", $request['genre']);
     case "login":
       return doLogin($request['username'],$request['password']);
     case "validate_session":

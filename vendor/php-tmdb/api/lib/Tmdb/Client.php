@@ -8,7 +8,7 @@
  * @package Tmdb
  * @author Michael Roterman <michael@wtfz.net>
  * @copyright (c) 2013, Michael Roterman
- * @version 0.0.1
+ * @version 2.1.10
  */
 namespace Tmdb;
 
@@ -31,7 +31,7 @@ class Client
     use ApiMethodsTrait;
 
     /** Client Version */
-    const VERSION  = '2.0.17';
+    const VERSION  = '2.1.10';
 
     /** Base API URI */
     const TMDB_URI = 'api.themoviedb.org/3/';
@@ -153,7 +153,7 @@ class Client
      */
     public function getOption($key)
     {
-        return array_key_exists($key, $this->options) ? $this->options : null;
+        return array_key_exists($key, $this->options) ? $this->options[$key] : null;
     }
 
     /**
@@ -169,7 +169,7 @@ class Client
     /**
      * Construct the http client
      *
-     * In case you are implementing your own adapter, the base url will be passed on through the $parameters array
+     * In case you are implementing your own adapter, the base url will be passed on through the options bag
      * at every call in the respective get / post methods etc. of the adapter.
      *
      * @return void
@@ -271,9 +271,7 @@ class Client
         $options = $resolver->resolve(array_key_exists('cache', $options) ? $options['cache'] : []);
 
         if ($options['enabled'] && !$options['handler']) {
-            $options['handler'] = new FilesystemCache(
-                $options['path']
-            );
+            $options['handler'] = new FilesystemCache($options['path']);
         }
 
         return $options;
@@ -336,7 +334,7 @@ class Client
 
         if (!$this->options['adapter']) {
             $this->options['adapter'] = new GuzzleAdapter(
-                new \GuzzleHttp\Client(['base_url' => $this->options['base_url']])
+                new \GuzzleHttp\Client()
             );
         }
 
