@@ -1,11 +1,10 @@
-
+<!DOCTYPE html>
 <html>
 <head>
     <style>
         footer {
             background-color: skyblue;
         }
-
         .button {
             background-color: #4CAF50;
             border: none;
@@ -18,7 +17,6 @@
             margin: 4px 2px;
             cursor: pointer;
         }
-
         input[type=text] {
             width: 130px;
             box-sizing: border-box;
@@ -33,11 +31,9 @@
             -webkit-transition: width 0.4s ease-in-out;
             transition: width 0.4s ease-in-out;
         }
-
             input[type=text]:focus {
                 width: 100%;
             }
-
         .dropbtn {
             background-color: skyblue;
             color: red;
@@ -46,12 +42,10 @@
             border: none;
             cursor: pointer;
         }
-
         .dropdown {
             position: relative;
             display: inline-block;
         }
-
         .dropdown-content {
             display: none;
             position: absolute;
@@ -60,22 +54,18 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
-
             .dropdown-content a {
                 color: black;
                 padding: 12px 16px;
                 text-decoration: none;
                 display: block;
             }
-
                 .dropdown-content a:hover {
                     background-color: #f1f1f1
                 }
-
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
@@ -86,8 +76,8 @@
 <body>
     <font color="Red" size="5">The Movie Database</font>
     <p align="right">
-        <a href="signin.php" class="button">Login</a>
-        <a href="signup.php" class="button">Sign Up</a>
+        <a href="signin.html" class="button">Login</a>
+        <a href="signup.html" class="button">Sign Up</a>
     </p>
     <table bgcolor="skyblue">
 
@@ -146,35 +136,18 @@
                         <a href="MostPopular.php"><font size="2">Most Popular</font></a>
                     </div>
             </td>
-
-	<td style="padding:0 15px 0 40px;">
-                <div class="dropdown">
-                    <button class="dropbtn"><b>My Account</b></button>
-                    <div class="dropdown-content">
-                        <a href="Watchlist.php"><font size="2">Watchlist</font></a>
-                        <a href="Notification.php"><font size="2">Notifications</font></a>
-                    </div>
-            </td>
-
-            <td style="padding:0 15px 0 250px;">
-
-		<form action="search.php" method="post">
-                <form>
-                <input type="text" name="search" placeholder="Search..">
-                </form>
-
-	</td>
+            <td style="padding:0 15px 0 250px;"><input type="text" name="search" placeholder="Search.."></td>
         </tr>
     </table>
     <br /><br />
-    <font size="5" color="red">Romance</font>
-    <br /><br /><br /><br />
-     <?php
-      require_once("movies.php.inc");
-      $db = new moviedb();
-      $db->moviesByGenre("Romance");
-    ?>
+    <font size="5" color="red" style="width:100px; height:40px;">Write your own forum post</font>
 
+	Enter Name: <input type="text" name="name">
+	<br/><br/>
+	<input type="text" name="forumPost">
+	<br/><br/>	
+
+    <br /><br /><br /><br />
     <footer>
         <center>
             <table>
@@ -197,4 +170,4 @@
         <center>Copyright Because I Said So! All Rights SUYA</center>
     </footer>
 </body>
-<html>
+</html>
