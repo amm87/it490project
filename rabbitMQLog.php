@@ -3,6 +3,7 @@
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
+include_once('logging.php.inc');
 function requestProcessor($request)
 {
     $fp = new errorLogger('/home/anthony/git/it490project/error.log');

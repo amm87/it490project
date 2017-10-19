@@ -3,6 +3,8 @@
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
+require_once('logging.php.inc');
+
 $client = new rabbitMQClient("rabbitMQLog.ini","testServer");
 $file = __FILE__." ";
 $logger = new errorLogger("/home/anthony/git/it490project/error.log");
