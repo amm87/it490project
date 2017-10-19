@@ -146,6 +146,15 @@
                         <a href="MostPopular.php"><font size="2">Most Popular</font></a>
                     </div>
             </td>
+	<td style="padding:0 15px 0 40px;">
+                <div class="dropdown">
+                    <button class="dropbtn"><b>My Account</b></button>
+                    <div class="dropdown-content">
+                        <a href="Watchlist.php"><font size="2">Watchlist</font></a>
+                        <a href="Notifcation.php"><font size="2">Notifcations</font></a>
+                    </div>
+            </td>
+
             <td style="padding:0 15px 0 250px;"><input type="text" name="search" placeholder="Search.."></td>
         </tr>
     </table>
