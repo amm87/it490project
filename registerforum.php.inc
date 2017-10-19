@@ -1,12 +1,15 @@
 <?php
 include('functions.php');
-class registerDB
+
+//session_start();
+class forumsdb
 {
+
 private $registerdb;
 
 public function __construct()
 {
-	$this->registerdb = new mysqli("127.0.0.1","root","123456","login");
+	$this->registerdb = new mysqli("127.0.0.1","root","abc123","it490");
 
 	if ($this->registerdb->connect_errno != 0)
 	{
@@ -16,43 +19,33 @@ public function __construct()
 	//echo "correctly connected to database".PHP_EOL;
 }
 
-    public function getClientId($name)
+public function getComments($movieId)
     {
-	$query = "select id from users where username = '$name';";
-	$results = $this->registerdb->query($query);
-	if (!$results)
-	{
-	    //$this->logger->log("error with results: ".$this->db->error);
-	    return 0;
-	}
-        $client = $results->fetch_assoc();
-	if (isset($client['id']))
-	{
-	    return $client['id'];
-	}
-	return 0;
+      $query = "select * from moviecomments where movieid = '$movieId'";
+      $result = $this->registerdb->query($query);
+      while ($row = $result->fetch_assoc())
+      {
+        echo $row['comment'];
+      }
     }
 
-public function registerUser($username,$password,$fname,$lname,$email)
-{
-    	if ($this->getClientId($username) != 0)
-        {
-            echo "exist".PHP_EOL;
-            $response=false;
-	    return $response;
-        }
 
-	$un = $this->registerdb->real_escape_string($username);
-	$pw = $this->registerdb->real_escape_string($password);
-	//$hpw = $this->hashPassword($pw); 
-	$fn = $this->registerdb->real_escape_string($fname);
-	$ln = $this->registerdb->real_escape_string($lname);
-	$em = $this->registerdb->real_escape_string($email);
-        $addquery = "insert into users(fname,lname,email,username,password) values ('$fn','$ln','$em','$un','$pw');";
+public function writeComment($comment, $movieId)
+{
+    //	if ($this->getClientId($comment) != 0)
+       // {
+           // echo "exist".PHP_EOL;
+          //  $response=false;
+	 //   return $response;
+       // }
+
+        //$username = $_SESSION["user"];
+        //$id = $_SESSION["id"]
+	$comment = $this->registerdb->real_escape_string($comment);
+        $addquery = "insert into moviecomments(userid, comment, movieId) values (5,'$comment', $movieId);";
 	$this->registerdb->query($addquery);
 	//echo "success".PHP_EOL;
-	$response = true;
-	return $response;
+	return $comment;
 	
 }
 }

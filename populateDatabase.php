@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
-  require_once ('/home/shannon/Documents/IT490/it490project/vendor/autoload.php');
-  require_once ('/home/shannon/Documents/IT490/it490project/movies.php.inc');
+  require_once ('/home/anthony/git/it490project/vendor/autoload.php');
+  require_once ('/home/anthony/git/it490project/movies.php.inc');
   $db = new moviedb();  
   $data = array();
   
@@ -16,6 +16,11 @@
   foreach ($movies as $movie)
   {
     $m =  $repository->load($movie->getId());
+<<<<<<< Updated upstream
+    $movieID = $m->getId();
+=======
+    $movieId = $movie->getId();
+>>>>>>> Stashed changes
     $movieTitle = $m->getTitle();
     $movieGenre = $m->getGenres()[0]->getName();
     $releaseDate = $m->getReleaseDate()->format('Y-m-d H-i-s');
@@ -27,8 +32,13 @@
       $imagePaths[$count] = $images->getFilePath();
     }
     $image = $imagePaths[0];
-    $query = "insert into movies(title, genre, releaseDate, rating, imagePath)
- values('$movieTitle', '$movieGenre', '$releaseDate', '$rating', '$image');";
+<<<<<<< Updated upstream
+    $query = "insert into movies(id,title, genre, releaseDate, rating, imagePath)
+ values('$movieID','$movieTitle', '$movieGenre', '$releaseDate', '$rating', '$image');";
+=======
+    $query = "insert into movies(movieId, title, genre, releaseDate, rating, imagePath)
+ values($movieId, '$movieTitle', '$movieGenre', '$releaseDate', '$rating', '$image');";
+>>>>>>> Stashed changes
     $db->addMovie($query);
   }
 }

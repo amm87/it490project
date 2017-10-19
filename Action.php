@@ -166,9 +166,41 @@
     <font size="5" color="red">Action</font>
     <br /><br /><br /><br />
     <?php
-      require_once("movies.php.inc");
-      $db = new moviedb();
-      $db->moviesByGenre("Action");
+      require_once('get_host_info.inc');
+      require_once('rabbitMQLib.inc');
+
+      $request = array();
+      $request['type'] = "genre";
+      $request['genre'] = "Action";
+      $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
+      $response = $client->send_request($request);
+      $r = json_decode($response, true);
+      echo "<table>";
+      $counter = 0;
+      foreach ($r as $movie)
+      {
+        if ($counter === 0)
+        {
+          echo "<tr>";
+        }
+        else if ($counter === 4)
+        {
+          echo "</tr>";
+          $counter = 0;
+        }
+
+        echo "<td>";
+        $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+        echo "<a href='Forums.php?type=2&movieid=".$movie["movieId"]."'><img src='$path'/></a><br>";
+        echo $movie['title']."<br>";
+        echo $movie['releaseDate'];
+        echo "</td>";
+        
+        $counter++;
+      }
+      echo "</table>";
+
+      $payload = json_encode($response);
     ?>
     <footer>
         <center>

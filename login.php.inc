@@ -1,4 +1,5 @@
 <?php
+session_start();
 class loginDB
 {
 
@@ -20,11 +21,13 @@ public function __construct()
 
 public function validateLogin($username,$password)
 {
+        $_SESSION['user'] = $username;
+        
 	$un = $this->logindb->real_escape_string($username);
 	$pw = $this->logindb->real_escape_string($password);
 	$statement = "select * from users where username = '$un';";
 	$response = $this->logindb->query($statement);
-
+        $_SESSION['id'] = $row["userId"];
 	while ($row = $response->fetch_assoc())
 	{
 		//echo "checking password for $username".PHP_EOL;

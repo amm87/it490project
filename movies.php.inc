@@ -1,7 +1,4 @@
 <?php
-   require_once('path.inc');
-    require_once('get_host_info.inc');
-    require_once('rabbitMQLib.inc');
 
   class moviedb
   {
@@ -16,40 +13,34 @@
       {
         echo "Could not connect to database".PHP_EOL;
       }
-      $this->client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
     }    
     
     private function displayMovies($resultArray, $exclude)
     {
       $counter = 0;
       $otherCounter = 0;
-      echo "<table>";
+      $result = array();
       foreach ($resultArray as $movie)
       {
+        
         if (!in_array($movie, $exclude))
         {
-      
-        if ($counter === 0)
-        {
-          echo "<tr>";
+            $result[$otherCounter] = $movie;
+            $otherCounter++;    
         }
-        else if ($counter === 4)
-        {
-          echo "</tr>";
-          $counter = 0;
-        }
+      }
+      $response = json_encode($result);
+      return $response;
+    }
 
-        echo "<td>";
-        $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-        echo "<a href='forums.php'><img src='$path'/></a><br>";
-        echo $movie['title']."<br>";
-        echo $movie['releaseDate'];
-        echo "</td>";
-        
-        $counter++;
+    public function getComments($movieId)
+    {
+      $query = "select * from moviecomments where movieId = '$movieId'";
+      $result = $this->database->query($query);
+      while ($row = $result->fetch_assoc())
+      {
+ 	echo $row['comment'];
       }
-      }
-      echo "</table>";
     }
  
     public function moviesByGenre($genre)
@@ -59,26 +50,13 @@
       $counter = 0;
       $resultArray = array();
       $request = array();
-      $request['type'] = "genre";
-      $request['genre'] = $genre;
-      $response = $this->client->send_request($request);
-      $payload = json_encode($response);
 
-      if ($payload === "true")
-      {
         while ($movie = $result->fetch_assoc())
         {
           $resultArray[$counter] = $movie;
           $counter++;
         }
-        $this-> displayMovies($resultArray, array());
-        return true;
-      }
-      else 
-      {
-        echo "Shit didn't work";
-      }
-      return false;
+        return  $this->displayMovies($resultArray, array());
     }
     
     public function addMovie($query)

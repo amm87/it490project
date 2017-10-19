@@ -89,10 +89,30 @@
         {
             var para = document.createElement("P");
             var t = document.createTextNode(document.getElementById("typer").value);
+            var link = window.location.href;
+            var url = new URL(link);
+            var params = url.searchParams.get("movieid");
+            window.location.href = "Forums.php?type=1&name=" + document.getElementById("typer").value+"&movieid="+params;
             document.getElementById("typer").value="";
             para.appendChild(t);
             document.getElementById("demo").appendChild(para);
         }
+        <?php
+            require_once("registerforum.php.inc");
+            $db = new forumsdb();
+            $type = $_GET['type'];
+            if ($type === "1")
+            {
+            $id = $_GET['movieid'];
+            $comment = $_GET['name'];
+            $db->writeComment($comment, $id);
+            }
+            else if ($type === "2")
+            {
+ 	      $movieid = $_GET['movieid'];
+              $db->getComments($movieid);
+            }
+        ?>
     </script>
     <font color="Red" size="5">The Movie Database</font>
     <p align="right">

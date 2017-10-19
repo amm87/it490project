@@ -5,15 +5,13 @@ require_once('rabbitMQLib.inc');
 require_once('login.php.inc');
 require_once('register.php.inc');
 require_once('movies.php.inc');
+require_once('search.php.inc');
 
 function showMovies($type, $value="")
 {
   $db = new moviedb();
-  $response;
-  if ($type === "genre")
-  {
-    $response = $db->moviesByGenre($value);
-  }
+  $response = false;
+  $response = $db->moviesByGenre("Action");
   return $response;
 }
 
@@ -43,6 +41,12 @@ function doRegister($username,$password,$fname,$lname,$email){
 
 }
 
+function doSearch($moviename){
+    $database = new searchdb();
+    $response = $database->searchMovie($moviename);
+    return $response;
+}
+
 function requestProcessor($request)
 {
   echo "received request".PHP_EOL;
@@ -53,6 +57,8 @@ function requestProcessor($request)
   }
   switch ($request['type'])
   {
+    case "search";
+        return doSearch($request["title"]);  
     case "genre":
       return showMovies("genre", $request['genre']);
     case "login":
