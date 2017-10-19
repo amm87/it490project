@@ -88,7 +88,7 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
-                        <a href="InTheatres.html"><font size="2">In Theatres</font></a>
+                        <a href="InTheatres.php"><font size="2">In Theatres</font></a>
                         <a href="LatestTrailers.html"><font size="2">Latest Trailers</font></a>
                     </div>
             </td>
@@ -135,18 +135,24 @@
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
                         <a href="Watchlist.php"><font size="2">Watchlist</font></a>
-                        <a href="Notifcation.php"><font size="2">Notifcations</font></a>
+                        <a href="Notification.php"><font size="2">Notifications</font></a>
                     </div>
             </td>
 
-            <td style="padding:0 15px 0 250px;"><input type="text" name="search" placeholder="Search.."></td>
+            <td style="padding:0 15px 0 250px;">
+		<form action="search.php" method="post">
+                <form>
+                <input type="text" name="search" placeholder="Search..">
+                </form>
+
+</td>
         </tr>
     </table>
     <br /><br />
 
  
 
-        <center> <font size="5" color="red"><b>Watchlist</b></font> </center>
+        <font size="5" color="red"><b>Watchlist</b></font> 
         <br /><br />
             <br /><br /><br /><br />
 
