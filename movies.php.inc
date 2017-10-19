@@ -1,8 +1,13 @@
 <?php
-  
+   require_once('path.inc');
+    require_once('get_host_info.inc');
+    require_once('rabbitMQLib.inc');
+
   class moviedb
   {
     private $database;
+    private $client;
+
     public function __construct()
     {
       $this->database = new mysqli('127.0.0.1', 'root', 'abc123', 'it490');
@@ -11,6 +16,7 @@
       {
         echo "Could not connect to database".PHP_EOL;
       }
+      $this->client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
     }    
     
     private function displayMovies($resultArray, $exclude)
@@ -35,7 +41,7 @@
 
         echo "<td>";
         $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-        echo "<a href='http://www.njit.edu'><img src='$path'/></a><br>";
+        echo "<a href='forums.php'><img src='$path'/></a><br>";
         echo $movie['title']."<br>";
         echo $movie['releaseDate'];
         echo "</td>";
@@ -52,12 +58,27 @@
       $result = $this->database->query($query);
       $counter = 0;
       $resultArray = array();
-      while ($movie = $result->fetch_assoc())
+      $request = array();
+      $request['type'] = "genre";
+      $request['genre'] = $genre;
+      $response = $this->client->send_request($request);
+      $payload = json_encode($response);
+
+      if ($payload === "true")
       {
-        $resultArray[$counter] = $movie;
-        $counter++;
+        while ($movie = $result->fetch_assoc())
+        {
+          $resultArray[$counter] = $movie;
+          $counter++;
+        }
+        $this-> displayMovies($resultArray, array());
+        return true;
       }
-      $this-> displayMovies($resultArray, array());
+      else 
+      {
+        echo "Shit didn't work";
+      }
+      return false;
     }
     
     public function addMovie($query)

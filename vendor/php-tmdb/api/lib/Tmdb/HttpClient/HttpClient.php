@@ -12,12 +12,11 @@
  */
 namespace Tmdb\HttpClient;
 
-use GuzzleHttp\Message\RequestInterface;
-use GuzzleHttp\Message\ResponseInterface;
-use GuzzleHttp\Subscriber\Cache\CacheStorage;
-use GuzzleHttp\Subscriber\Cache\CacheSubscriber;
-use GuzzleHttp\Subscriber\Log\LogSubscriber;
+use Kevinrob\GuzzleCache\CacheMiddleware;
+use Kevinrob\GuzzleCache\Storage\DoctrineCacheStorage;
+use Kevinrob\GuzzleCache\Strategy\PrivateCacheStrategy;
 use Monolog\Logger;
+use Psr\Log\LogLevel;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 use Tmdb\ApiToken;
 use Tmdb\Common\ParameterBag;
@@ -26,7 +25,6 @@ use Tmdb\Event\RequestEvent;
 use Tmdb\Event\RequestSubscriber;
 use Tmdb\Event\TmdbEvents;
 use Tmdb\Exception\ApiTokenMissingException;
-use Tmdb\Exception\RuntimeException;
 use Tmdb\GuestSessionToken;
 use Tmdb\HttpClient\Adapter\AdapterInterface;
 use Tmdb\HttpClient\Adapter\GuzzleAdapter;
@@ -64,6 +62,8 @@ class HttpClient
      * The base url to built requests on top of
      *
      * @var null
+     *
+     * @deprecated since 2.1.10, to be removed in 3.0. Use `base_url` of the request options instead.
      */
     protected $base_url = null;
 
@@ -175,7 +175,7 @@ class HttpClient
     }
 
     /**
-     * @return RequestInterface
+     * @return \Psr\Http\Message\RequestInterface
      */
     public function getLastRequest()
     {
@@ -183,7 +183,7 @@ class HttpClient
     }
 
     /**
-     * @return ResponseInterface
+     * @return \Psr\Http\Message\ResponseInterface
      */
     public function getLastResponse()
     {
@@ -225,7 +225,13 @@ class HttpClient
      */
     private function send($path, $method, array $parameters = [], array $headers = [], $body = null)
     {
-        $request = $this->createRequest($path, $method, $parameters, $headers, $body);
+        $request = $this->createRequest(
+            $path,
+            $method,
+            $parameters,
+            $headers,
+            $body
+        );
 
         $event = new RequestEvent($request);
         $this->eventDispatcher->dispatch(TmdbEvents::REQUEST, $event);
@@ -438,9 +444,15 @@ class HttpClient
                 //@codeCoverageIgnoreEnd
             }
 
-            CacheSubscriber::attach(
-                $this->getAdapter()->getClient(),
-                ['storage' => new CacheStorage($parameters['handler'])]
+            $this->adapter->getClient()->getConfig('handler')->push(
+                new CacheMiddleware(
+                    new PrivateCacheStrategy(
+                        new DoctrineCacheStorage(
+                            $parameters['handler']
+                        )
+                    )
+                ),
+                'tmdb-cache'
             );
         }
 
@@ -465,14 +477,22 @@ class HttpClient
                     have you forgot adding monolog to your composer.json?'
                 );
                 //@codeCoverageIgnoreEnd
-            } else {
-                $logger = new Logger('php-tmdb-api');
-                $logger->pushHandler($parameters['handler']);
             }
 
+            $logger = new Logger('php-tmdb-api');
+            $logger->pushHandler($parameters['handler']);
+
             if ($this->getAdapter() instanceof GuzzleAdapter) {
-                $subscriber = new LogSubscriber($logger);
-                $this->getAdapter()->getClient()->getEmitter()->attach($subscriber);
+                $middleware = new \Concat\Http\Middleware\Logger($logger);
+                $middleware->setRequestLoggingEnabled(true);
+                $middleware->setLogLevel(function($response) {
+                    return LogLevel::DEBUG;
+                });
+
+                $this->getAdapter()->getClient()->getConfig('handler')->push(
+                    $middleware,
+                    'tmdb-log'
+                );
             }
         }
 

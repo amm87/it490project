@@ -32,10 +32,10 @@ class TvSeasonRepository extends AbstractRepository
      *
      * If you want to optimize the result set/bandwidth you should define the AppendToResponse parameter
      *
-     * @param $tvShow
-     * @param $season
-     * @param $parameters
-     * @param $headers
+     * @param int|Tv $tvShow
+     * @param int|Season $season
+     * @param array $parameters
+     * @param array $headers
      * @throws RuntimeException
      * @return null|\Tmdb\Model\AbstractModel
      */
@@ -46,15 +46,15 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
-        if (null == $tvShow || null == $season) {
+        if (null === $tvShow || null === $season) {
             throw new RuntimeException('Not all required parameters to load an tv season are present.');
         }
 
-        if (empty($parameters)) {
-            $parameters = [
+        if (!isset($parameters['append_to_response'])) {
+            $parameters = array_merge($parameters, [
                 new AppendToResponse([
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
@@ -62,7 +62,7 @@ class TvSeasonRepository extends AbstractRepository
                     AppendToResponse::CHANGES,
                     AppendToResponse::VIDEOS
                 ])
-            ];
+            ]);
         }
 
         $data = $this->getApi()->getSeason($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
@@ -88,7 +88,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         $data   = $this->getApi()->getCredits($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
@@ -113,7 +113,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         $data   = $this->getApi()->getExternalIds($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
@@ -138,7 +138,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         $data   = $this->getApi()->getImages($tvShow, $season, $this->parseQueryParameters($parameters), $headers);
@@ -163,7 +163,7 @@ class TvSeasonRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         $data   = $this->getApi()->getVideos($tvShow, $season, $this->parseQueryParameters($parameters), $headers);

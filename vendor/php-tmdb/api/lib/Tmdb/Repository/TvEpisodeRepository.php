@@ -51,19 +51,19 @@ class TvEpisodeRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         if ($episode instanceof Tv\Episode) {
-            $episode = $episode->getId();
+            $episode = $episode->getEpisodeNumber();
         }
 
-        if (null == $tvShow || null == $season || null == $episode) {
+        if (is_null($tvShow) || is_null($season) || is_null($episode) ) {
             throw new RuntimeException('Not all required parameters to load an tv episode are present.');
         }
 
-        if (empty($parameters)) {
-            $parameters = [
+        if (!isset($parameters['append_to_response'])) {
+            $parameters = array_merge($parameters, [
                 new AppendToResponse([
                     AppendToResponse::CREDITS,
                     AppendToResponse::EXTERNAL_IDS,
@@ -71,7 +71,7 @@ class TvEpisodeRepository extends AbstractRepository
                     AppendToResponse::CHANGES,
                     AppendToResponse::VIDEOS
                 ])
-            ];
+            ]);
         }
 
         $data = $this->getApi()->getEpisode(
@@ -104,11 +104,11 @@ class TvEpisodeRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         if ($episode instanceof Tv\Episode) {
-            $episode = $episode->getId();
+            $episode = $episode->getEpisodeNumber();
         }
 
         $data = $this->getApi()->getCredits(
@@ -141,11 +141,11 @@ class TvEpisodeRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         if ($episode instanceof Tv\Episode) {
-            $episode = $episode->getId();
+            $episode = $episode->getEpisodeNumber();
         }
 
         $data = $this->getApi()->getExternalIds(
@@ -178,11 +178,11 @@ class TvEpisodeRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         if ($episode instanceof Tv\Episode) {
-            $episode = $episode->getId();
+            $episode = $episode->getEpisodeNumber();
         }
 
         $data = $this->getApi()->getImages(
@@ -215,11 +215,11 @@ class TvEpisodeRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         if ($episode instanceof Tv\Episode) {
-            $episode = $episode->getId();
+            $episode = $episode->getEpisodeNumber();
         }
 
         $data = $this->getApi()->getVideos(
@@ -253,11 +253,11 @@ class TvEpisodeRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         if ($episode instanceof Tv\Episode) {
-            $episode = $episode->getId();
+            $episode = $episode->getEpisodeNumber();
         }
 
         return $this->getFactory()->createAccountStates(
@@ -283,11 +283,11 @@ class TvEpisodeRepository extends AbstractRepository
         }
 
         if ($season instanceof Season) {
-            $season = $season->getId();
+            $season = $season->getSeasonNumber();
         }
 
         if ($episode instanceof Tv\Episode) {
-            $episode = $episode->getId();
+            $episode = $episode->getEpisodeNumber();
         }
 
         return $this->getFactory()->createResult(
