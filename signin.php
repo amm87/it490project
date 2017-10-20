@@ -29,7 +29,7 @@ $payload = json_encode($response);
 echo $payload;
 if($payload =="true" ){
     
-    echo header("Location: index.html");
+    echo header("Location: index.php");
 }
 
 else{

@@ -6,7 +6,7 @@ private $registerdb;
 
 public function __construct()
 {
-	$this->registerdb = new mysqli("192.168.1.5","root","123456","it490project");
+	$this->registerdb = new mysqli('192.168.1.3','root','123456','login');
 
 	if ($this->registerdb->connect_errno != 0)
 	{
