@@ -1,11 +1,14 @@
 <?php
+session_start();
 include ("login.php.inc");
 include('functions.php');
 require_once('path.inc');
 require_once('get_host_info.inc');
 require_once('rabbitMQLib.inc');
 $name = $_POST["user"]; 
-$pass = $_POST["password"]; 
+$pass = $_POST["password"];
+
+
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 
 if (isset($argv[1]))
@@ -19,6 +22,7 @@ else
 
 $request = array();
 $request['type'] = "login";
+$_SESSION['uid'] = 5;
 $request['username'] = $name;
 $request['password'] = hashPassword($pass);
 $request['message'] = $msg;
@@ -26,7 +30,7 @@ $response = $client->send_request($request);
 //$response = $client->publish($request);
 
 $payload = json_encode($response);
-echo $payload;
+//echo $payload;
 if($payload =="true" ){
     
     echo header("Location: index.php");

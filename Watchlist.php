@@ -1,3 +1,13 @@
+
+        <?php
+        session_start();
+        require_once("watchlist.php.inc");
+    
+    
+        
+       $db = new watchdb();
+       echo $db->getWatch($_SESSION['uid']);
+        ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -155,16 +165,6 @@
         <br /><br />
             <br /><br /><br /><br />
 
-        <?php
-
-       require_once("movies.php.inc");
-       require_once("watchlist.php.inc");
-        
-       $db = new watchdb();
-       $db = new moviedb();
-       $db->watchlist();
-       echo $db->getWatch($_SESSION['id']);
-        ?>
 
             <footer>
                 <center>

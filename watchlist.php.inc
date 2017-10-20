@@ -1,5 +1,4 @@
 <?php
-
 class watchdb
 {
 
@@ -37,16 +36,16 @@ public function searchMovieWatch($moviename)
     }
     
 public function addWatchList($movieid){
-        $userid= $_SESSION['id'];
+        $userid= $_SESSION['uid'];
         $addquery = "insert into watchlist(movieid,userid) values ('$movieid','$userid');";
 	$this->registerdb->query($addquery);
 	
 
 }
 
-public function getWatch($userid)
+public function getWatch()
     {
-    
+        $userid = $_SESSION['uid'];
 	$query = "select movieid from watchlist where userid = '$userid';";
 	$results = $this->db->query($query);
 	if (!$results)
@@ -55,9 +54,9 @@ public function getWatch($userid)
 	    return 0;
 	}
         $client = $results->fetch_assoc();
-	if (isset($client['id']))
+	if (isset($client['userid']))
 	{
-	    return $client['id'];
+	    return $client['userid'];
 	}
 	return 5;
     }

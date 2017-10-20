@@ -191,7 +191,7 @@
             if ($type === "1")
             {
             $id = $_GET['movieid'];
-            $db2->showMovieInfo($id);
+           // $db2->showMovieInfo($id);
             $comment = $_GET['name'];
             $db->writeComment($comment, $id);
             $db->getComments($id);
@@ -199,7 +199,7 @@
             else if ($type === "2")
             {
  	      $movieid = $_GET['movieid'];
-              $db2->showMovieInfo($movieid);
+              //$db2->showMovieInfo($movieid);
 
               $db->getComments($movieid);
             }
