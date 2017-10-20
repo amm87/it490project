@@ -10,8 +10,14 @@ require_once('search.php.inc');
 function showMovies($type, $value="")
 {
   $db = new moviedb();
-  $response = false;
+  if ($type === "genre")
+  {
   $response = $db->moviesByGenre("Action");
+  }
+  else if ($type === "upcoming")
+  {
+  $response = $db->upcomingMovies($value);
+  }
   return $response;
 }
 
@@ -63,6 +69,8 @@ function requestProcessor($request)
         return doSearch($request["title"]);  
     case "genre":
       return showMovies("genre", $request['genre']);
+    case "upcoming":
+      return showMovies("upcoming", $request["range"]);
     case "login":
       return doLogin($request['username'],$request['password']);
     case "validate_session":

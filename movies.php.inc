@@ -133,7 +133,7 @@
         }
         $counter++;
       }
-      $this->displayMovies($resultArray, $exclude);
+      return $this->displayMovies($resultArray, $exclude);
     }
 
     public function moviesByRating($type)
