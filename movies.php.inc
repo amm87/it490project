@@ -7,7 +7,7 @@
 
     public function __construct()
     {
-      $this->database = new mysqli('127.0.0.1', 'root', 'abc123', 'it490');
+      $this->database = new mysqli('192.168.1.5', 'root', '123456', 'it490project');
       
       if ($this->database->connect_errno > 0)
       {
@@ -17,11 +17,11 @@
     
     public function showMovieInfo($movieId)
     {
-      $query = "select * from movies where movieId = '$movieId'";
+      $query = "select * from movies where id = '$movieId'";
       $result = $this->database->query($query);
       $movie = $result->fetch_assoc();
       $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-      echo "<a href='Forums.php?type=2&movieid=".$movie["movieId"]."'><img src='$path'/></a><br>";
+      echo "<a href='Forums.php?type=2&movieid=".$movie["id"]."'><img src='$path'/></a><br>";
       echo $movie['title']."<br>";
       echo $movie['releaseDate']."<br><br>";
 
@@ -47,7 +47,7 @@
 
     public function getComments($movieId)
     {
-      $query = "select * from moviecomments where movieId = '$movieId'";
+      $query = "select * from moviecomments where id = '$movieId'";
       $result = $this->database->query($query);
       while ($row = $result->fetch_assoc())
       {
@@ -133,7 +133,7 @@
         }
         $counter++;
       }
-      return $this->displayMovies($resultArray, $exclude);
+     return $this->displayMovies($resultArray, $exclude);
     }
 
     public function moviesByRating($type)

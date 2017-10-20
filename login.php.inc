@@ -9,7 +9,7 @@ private $salt;
 
 public function __construct()
 {
-	$this->logindb = new mysqli("192.168.1.3","root","123456","login");
+	$this->logindb = new mysqli("192.168.1.5","root","123456","it490project");
 
 	if ($this->logindb->connect_errno != 0)
 	{
@@ -33,6 +33,7 @@ public function validateLogin($username,$password)
 		//echo "checking password for $username".PHP_EOL;
 		if ($row["password"] == $pw)
 		{
+                        //$_SESSION['id'] = $row["userId"];
 			//header("Location: index.html");
 			return true;
 		}

@@ -9,6 +9,7 @@ require_once('search.php.inc');
 
 function showMovies($type, $value="")
 {
+    $response=false;
   $db = new moviedb();
   if ($type === "genre")
   {
