@@ -157,13 +157,13 @@
 
         <?php
 
-        //require_once("movies.php.inc");
-       // require_once("watchlist.php.inc");
+       require_once("movies.php.inc");
+       require_once("watchlist.php.inc");
         
-        //$db = new watchdb();
-        //$db = new moviedb();
-        //$db->watchlist();
-        //echo $db-> getWatch($_SESSION['id']);
+       $db = new watchdb();
+       $db = new moviedb();
+       $db->watchlist();
+       echo $db->getWatch($_SESSION['id']);
         ?>
 
             <footer>
