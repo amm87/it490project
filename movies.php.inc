@@ -7,7 +7,7 @@
 
     public function __construct()
     {
-      $this->database = new mysqli('192.168.1.5', 'root', '123456', 'it490project');
+      $this->database = new mysqli('192.168.1.6', 'root', '123456', 'it490project');
       
       if ($this->database->connect_errno > 0)
       {

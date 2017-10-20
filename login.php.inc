@@ -8,7 +8,7 @@ private $salt;
 
 public function __construct()
 {
-	$this->logindb = new mysqli("192.168.1.5","root","123456","it490project");
+	$this->logindb = new mysqli("192.168.1.6","root","123456","it490project");
 
 	if ($this->logindb->connect_errno != 0)
 	{
