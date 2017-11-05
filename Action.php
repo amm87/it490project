@@ -121,19 +121,19 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Genre</b></button>
                     <div class="dropdown-content">
-                        <a href="#" onClick("Action")><font size="2">Action</font></a>
-                        <a href="#" onClick("Adventure")><font size="2">Adventure</font></a>
-                        <a href="#" onClick("Animated")><font size="2">Animated</font></a>
-                        <a href="#" onClick("Comedy")><font size="2">Comedy</font></a>
-                        <a href="#" onClick("Drama")><font size="2">Drama</font></a>
-                        <a href="#" onClick("Documentary")><font size="2">Documentary</font></a>
-                        <a href="#" onClick("Fantasy")><font size="2">Fantasy</font></a>
-                        <a href="#" onClick("Foreign")><font size="2">Foreign</font></a>
-                        <a href="#" onClick("Horror")><font size="2">Horror</font></a>
-                        <a href="#" onClick("Romance")><font size="2">Romance</font></a>
-                        <a href="#" onClick("ScienceFiction")><font size="2">Science Fiction</font></a>
-                        <a href="#" onClick("Supernatural")><font size="2">Supernatural</font></a>
-                        <a href="#" onClick("Suspense")><font size="2">Suspense</font></a>
+                        <a href="" onClick("Action")><font size="2">Action</font></a>
+                        <a href="" onClick("Adventure")><font size="2">Adventure</font></a>
+                        <a href="" onClick("Animated")><font size="2">Animated</font></a>
+                        <a href="" onClick("Comedy")><font size="2">Comedy</font></a>
+                        <a href="" onClick("Drama")><font size="2">Drama</font></a>
+                        <a href="" onClick("Documentary")><font size="2">Documentary</font></a>
+                        <a href="" onClick("Fantasy")><font size="2">Fantasy</font></a>
+                        <a href="" onClick("Foreign")><font size="2">Foreign</font></a>
+                        <a href="" onClick("Horror")><font size="2">Horror</font></a>
+                        <a href="" onClick("Romance")><font size="2">Romance</font></a>
+                        <a href="" onClick("ScienceFiction")><font size="2">Science Fiction</font></a>
+                        <a href="" onClick("Supernatural")><font size="2">Supernatural</font></a>
+                        <a href="" onClick("Suspense")><font size="2">Suspense</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 40px;">
@@ -163,17 +163,17 @@
         </tr>
     </table>
     <br /><br />
-    <font size="5" color="red">Action</font>
-    <br /><br /><br /><br />
     <?php
       echo "<script>";
-      function onClick(piece) {
+      function onClick($piece) {
+      echo "<font size="5" color="red">"+$piece+"</font>";
+      echo "<br /><br /><br /><br />";
       require_once('get_host_info.inc');
       require_once('rabbitMQLib.inc');
 
       $request = array();
       $request['type'] = "genre";
-      $request['genre'] = piece;
+      $request['genre'] = $piece;
       $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
       $response = $client->send_request($request);
       $r = json_decode($response, true);
