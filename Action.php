@@ -1,11 +1,9 @@
-
 <html>
 <head>
     <style>
         footer {
             background-color: skyblue;
         }
-
         .button {
             background-color: #4CAF50;
             border: none;
@@ -18,7 +16,6 @@
             margin: 4px 2px;
             cursor: pointer;
         }
-
         input[type=text] {
             width: 130px;
             box-sizing: border-box;
@@ -26,18 +23,16 @@
             border-radius: 4px;
             font-size: 16px;
             background-color: white;
-            background-image: url('searchicon.png');
+            background-image: url("searchicon.png");
             background-position: 10px 10px;
             background-repeat: no-repeat;
             padding: 12px 20px 12px 40px;
             -webkit-transition: width 0.4s ease-in-out;
             transition: width 0.4s ease-in-out;
         }
-
             input[type=text]:focus {
                 width: 100%;
             }
-
         .dropbtn {
             background-color: skyblue;
             color: red;
@@ -46,12 +41,10 @@
             border: none;
             cursor: pointer;
         }
-
         .dropdown {
             position: relative;
             display: inline-block;
         }
-
         .dropdown-content {
             display: none;
             position: absolute;
@@ -60,22 +53,18 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
-
             .dropdown-content a {
                 color: black;
                 padding: 12px 16px;
                 text-decoration: none;
                 display: block;
             }
-
                 .dropdown-content a:hover {
                     background-color: #f1f1f1
                 }
-
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
@@ -146,8 +135,7 @@
                         <a href="MostPopular.php"><font size="2">Most Popular</font></a>
                     </div>
             </td>
-
-	<td style="padding:0 15px 0 40px;">
+            <td style="padding:0 15px 0 40px;">
                 <div class="dropdown">
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
@@ -155,26 +143,52 @@
                         <a href="Notification.php"><font size="2">Notifications</font></a>
                     </div>
             </td>
-
             <td style="padding:0 15px 0 250px;">
-
 		<form action="search.php" method="post">
                 <form>
                 <input type="text" name="search" placeholder="Search..">
                 </form>
-
+		
 	</td>
         </tr>
     </table>
     <br /><br />
     <font size="5" color="red">Action</font>
     <br /><br /><br /><br />
-     <?php
-      require_once("movies.php.inc");
-      $db = new moviedb();
-      $db->moviesByGenre("Action");
+    <?php
+      require_once('get_host_info.inc');
+      require_once('rabbitMQLib.inc');
+      $request = array();
+      $request['type'] = "genre";
+      $request['genre'] = "Action";
+      $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
+      $response = $client->send_request($request);
+      $r = json_decode($response, true);
+      echo "<table>";
+      $counter = 0;
+      foreach ($r as $movie)
+      {
+        if ($counter === 0)
+        {
+          echo "<tr>";
+        }
+        else if ($counter === 4)
+        {
+          echo "</tr>";
+          $counter = 0;
+        }
+        echo "<td>";
+        $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+        echo "<a href='Forums.php?type=2&movieid=".$movie["movieId"]."'><img src='$path'/></a><br>";
+        echo $movie['title']."<br>";
+        echo $movie['releaseDate'];
+        echo "</td>";
+        
+        $counter++;
+      }
+      echo "</table>";
+      $payload = json_encode($response);
     ?>
-
     <footer>
         <center>
             <table>
