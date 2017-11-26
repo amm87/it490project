@@ -111,6 +111,7 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Genre</b></button>
                     <div class="dropdown-content">
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Action') ?>');"><font size="2"></font></a>
                         <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Action') ?>');"><font size="2">Action</font></a>
                         <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Adventure') ?>');"><font size="2">Adventure</font></a>
                         <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Animated') ?>');"><font size="2">Animated</font></a>
@@ -154,6 +155,7 @@
     </table>
     <br /><br />
     <p id="demo"></p>
+    
     <?php
     function display($value)
     {
@@ -182,7 +184,7 @@
     }
     echo "<td>";
     $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-    echo "<a href='Forums.php?type=2&movieid=".$movie["movieId"]."'><img src='$path'/></a><br>";
+   #echo "<a href='Forums.php?type=2&movieid=".$movie["movieId"]."'><img src='$path'/></a><br>";
     echo $movie['title']."<br>";
     echo $movie['releaseDate'];
     echo "</td>";
@@ -215,4 +217,4 @@
         <center>Copyright Because I Said So! All Rights SUYA</center>
     </footer>
 </body>
-<html>
+</html>

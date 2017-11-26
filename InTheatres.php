@@ -111,6 +111,7 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Genre</b></button>
                     <div class="dropdown-content">
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Action') ?>');"><font size="2"></font></a>
                         <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Action') ?>');"><font size="2">Action</font></a>
                         <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Adventure') ?>');"><font size="2">Adventure</font></a>
                         <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Animated') ?>');"><font size="2">Animated</font></a>
