@@ -184,7 +184,9 @@
     }
     echo "<td>";
     $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-   #echo "<a href='Forums.php?type=2&movieid=".$movie["movieId"]."'><img src='$path'/></a><br>";
+    $value = $movie["movieId"];
+    $link = "Forums.php?type=2&movieid=$value";
+    echo "<a href=$link><img src=$path></a><br>";
     echo $movie['title']."<br>";
     echo $movie['releaseDate'];
     echo "</td>";

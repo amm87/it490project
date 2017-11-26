@@ -6,6 +6,6 @@ read packageName
 echo Folder to zip:
 read Zip
 
-tar -czvf $packageName $Zip
+tar -czvf /tmp/$packageName .
 
-scp $Zip/$packageName anthony@192.168.1.151:/home/anthony/Bundles
+scp /tmp/$packageName anthony@192.168.1.151:/home/anthony/bundles
