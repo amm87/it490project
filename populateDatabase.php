@@ -1,7 +1,7 @@
 #!/usr/bin/php
 <?php
-  require_once ('/home/anthony/git/it490project/vendor/autoload.php');
-  require_once ('/home/anthony/git/it490project/movies.php.inc');
+  require_once ('/home/shannon/Documents/IT490/it490project/vendor/autoload.php');
+  require_once ('/home/shannon/Documents/IT490/it490project/movies.php.inc');
   $db = new moviedb();  
   $data = array();
   

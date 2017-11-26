@@ -13,7 +13,7 @@ function showMovies($type, $value="")
   $db = new moviedb();
   if ($type === "genre")
   {
-  $response = $db->moviesByGenre("Action");
+  $response = $db->moviesByGenre($value);
   }
   else if ($type === "upcoming")
   {

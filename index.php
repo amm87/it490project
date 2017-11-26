@@ -1,4 +1,3 @@
-<!DOCTYPE<html>
 <html>
 <head>
     <style>
@@ -24,14 +23,13 @@
             border-radius: 4px;
             font-size: 16px;
             background-color: white;
-            background-image: url('searchicon.png');
+            background-image: url("searchicon.png");
             background-position: 10px 10px;
             background-repeat: no-repeat;
             padding: 12px 20px 12px 40px;
-            -webkit-transition: width 0.8s ease-in-out;
+            -webkit-transition: width 0.4s ease-in-out;
             transition: width 0.4s ease-in-out;
         }
-
             input[type=text]:focus {
                 width: 100%;
             }
@@ -43,12 +41,10 @@
             border: none;
             cursor: pointer;
         }
-
         .dropdown {
             position: relative;
             display: inline-block;
         }
-
         .dropdown-content {
             display: none;
             position: absolute;
@@ -57,22 +53,18 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
-
             .dropdown-content a {
                 color: black;
                 padding: 12px 16px;
                 text-decoration: none;
                 display: block;
             }
-
                 .dropdown-content a:hover {
                     background-color: #f1f1f1
                 }
-
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
@@ -83,16 +75,17 @@
 <body>
     <font color="Red" size="5">The Movie Database</font>
     <p align="right">
-        <a href="signin.html"  class="button">Login</a>
-        <a href="signup.html" class="button">Sign Up</a>
+        <a href="signin.php" class="button">Login</a>
+        <a href="signup.php" class="button">Sign Up</a>
     </p>
     <table bgcolor="skyblue">
-        
+
         <tr>
             <td style="padding:0 15px 0 40px;">
                 <div class="dropdown">
                     <button class="dropbtn"><b>Upcoming</b></button>
                     <div class="dropdown-content">
+                       
                         <a href="ThisMonth.php"><font size="2">In the Month</font></a>
                         <a href="YearLineups.php"><font size="2">Year Linups</font></a>
                     </div>
@@ -109,7 +102,7 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Communities</b></button>
                     <div class="dropdown-content">
-                        <a href="Forums.php?type=0"><font size="2">Forums</font></a>
+                        <a href="Forums.php"><font size="2">Forums</font></a>
                         <a href="Blogs.php"><font size="2">Blogs</font></a>
                         <a href="Articles.php"><font size="2">Articles</font></a>
                     </div>
@@ -118,19 +111,19 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Genre</b></button>
                     <div class="dropdown-content">
-                        <a href="Action.php"><font size="2">Action</font></a>
-                        <a href="Adventure.php"><font size="2">Adventure</font></a>
-                        <a href="Animated.php"><font size="2">Animated</font></a>
-                        <a href="Comedy.php"><font size="2">Comedy</font></a>
-                        <a href="Drama.php"><font size="2">Drama</font></a>
-                        <a href="Documentary.php"><font size="2">Documentary</font></a>
-                        <a href="Fantasy.php"><font size="2">Fantasy</font></a>
-                        <a href="Foreign.php"><font size="2">Foreign</font></a>
-                        <a href="Horror.php"><font size="2">Horror</font></a>
-                        <a href="Romance.php"><font size="2">Romance</font></a>
-                        <a href="ScienceFiction.php"><font size="2">Science Fiction</font></a>
-                        <a href="Supernatural.php"><font size="2">Supernatural</font></a>
-                        <a href="Suspense.php"><font size="2">Suspense</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Action') ?>');"><font size="2">Action</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Adventure') ?>');"><font size="2">Adventure</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Animated') ?>');"><font size="2">Animated</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Comedy') ?>');"><font size="2">Comedy</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Drama') ?>');"><font size="2">Drama</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Documentary') ?>');"><font size="2">Documentary</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Fantasy') ?>');"><font size="2">Fantasy</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Foreign') ?>');"><font size="2">Foreign</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Horror') ?>');"><font size="2">Horror</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Romance') ?>');"><font size="2">Romance</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('ScienceFiction') ?>');"><font size="2">Science Fiction</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Supernatural') ?>');"><font size="2">Supernatural</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Suspense') ?>');"><font size="2">Suspense</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 40px;">
@@ -142,7 +135,7 @@
                         <a href="MostPopular.php"><font size="2">Most Popular</font></a>
                     </div>
             </td>
-             <td style="padding:0 15px 0 40px;">
+            <td style="padding:0 15px 0 40px;">
                 <div class="dropdown">
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
@@ -152,13 +145,54 @@
             </td>
             <td style="padding:0 15px 0 250px;">
 		<form action="search.php" method="post">
-		<form>
-		<input type="text" name="search" placeholder="Search..">
-		</form>
-		</td>
+                <form>
+                <input type="text" name="search" placeholder="Search..">
+                </form>
+		
+	</td>
         </tr>
     </table>
-    <br /><br /><br /><br />
+    <br /><br />
+    <p id="demo"></p>
+    <?php
+    function display($value)
+    {
+    echo $value;
+    echo "<br><br><br><br>";
+    require_once('get_host_info.inc');
+    require_once('rabbitMQLib.inc');
+    $request = array();
+    $request['type'] = "genre";
+    $request['genre'] = $value;
+    $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
+    $response = $client->send_request($request);
+    $r = json_decode($response, true);
+    echo "<table>";
+    $counter = 0;
+    foreach ($r as $movie)
+    {
+    if ($counter === 0)
+    {
+        echo "<tr>";
+    }
+    else if ($counter === 4)
+    {
+        echo "</tr>";
+        $counter = 0;
+    }
+    echo "<td>";
+    $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+    echo "<a href='Forums.php?type=2&movieid=".$movie["movieId"]."'><img src='$path'/></a><br>";
+    echo $movie['title']."<br>";
+    echo $movie['releaseDate'];
+    echo "</td>";
+    
+    $counter++;
+    }
+    echo "</table>";
+    $payload = json_encode($response);
+    }
+    ?>
     <footer>
         <center>
             <table>
