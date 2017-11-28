@@ -100,8 +100,8 @@
     </script>
     <font color="Red" size="5">The Movie Database</font>
     <p align="right">
-        <a href="signin.php" class="button">Login</a>
-        <a href="signup.php" class="button">Sign Up</a>
+        <a href="signin.html" class="button">Login</a>
+        <a href="signup.html" class="button">Sign Up</a>
     </p>
     <table bgcolor="skyblue">
 

@@ -73,9 +73,11 @@
             background-color: #3e8e41;
         }
     </style>
-    <meta charset="utf-8" />
-    <title>The Movie Database</title>
+      <title><a href="index.php"<html>The Movie Database</a></title>
 </head>
+
+<link rel="stylesheet" href="bootstrap.css">
+
 <body>
     <font color="Red" size="5">The Movie Database</font>
     <p align="right">
