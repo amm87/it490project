@@ -68,15 +68,19 @@
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
+        a {
+            text-decoration:none;
+            }
     </style>
     <meta charset="utf-8" />
-    <title><a href="index.php"<html>The Movie Database</a></title>
+    <a href="index.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
+   
 </head>
 
 <link rel="stylesheet" href="bootstrap.css">
 
 <body>
-    <font color="Red" size="5">The Movie Database</font>
+
     <p align="right">
         <a href="signin.html" class="button">Login</a>
         <a href="signup.html" class="button">Sign Up</a>
@@ -106,8 +110,6 @@
                     <button class="dropbtn"><b>Communities</b></button>
                     <div class="dropdown-content">
                         <a href="Forums.php"><font size="2">Forums</font></a>
-                        <a href="Blogs.php"><font size="2">Blogs</font></a>
-                        <a href="Articles.php"><font size="2">Articles</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 40px;">
@@ -136,7 +138,6 @@
                     <div class="dropdown-content">
                         <a href="Top.php"><font size="2">Top Rated This Year</font></a>
                         <a href="AllTime.php"><font size="2">All Time Bests</font></a>
-                        <a href="MostPopular.php"><font size="2">Most Popular</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 40px;">
