@@ -158,7 +158,7 @@
         </tr>
     </table>
     <br /><br />
-    <p id="demo"><font size="5" color="red">All Time Bests</font>
+    <p id="demo"><font size="5" color="red">Forums</font>
     <?php
             require_once("movies.php.inc");
             require_once("registerforum.php.inc");
