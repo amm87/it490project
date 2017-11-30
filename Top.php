@@ -1,5 +1,6 @@
 <html>
 <head>
+<link rel="stylesheet" href="bootstrap.css">
     <style>
         footer {
             background-color: skyblue;
@@ -16,23 +17,6 @@
             margin: 4px 2px;
             cursor: pointer;
         }
-        input[type=text] {
-            width: 130px;
-            box-sizing: border-box;
-            border: 2px solid #ccc;
-            border-radius: 4px;
-            font-size: 16px;
-            background-color: white;
-            background-image: url("searchicon.png");
-            background-position: 10px 10px;
-            background-repeat: no-repeat;
-            padding: 12px 20px 12px 40px;
-            -webkit-transition: width 0.4s ease-in-out;
-            transition: width 0.4s ease-in-out;
-        }
-            input[type=text]:focus {
-                width: 100%;
-            }
         .dropbtn {
             background-color: skyblue;
             color: red;
@@ -77,8 +61,6 @@
    
 </head>
 
-<link rel="stylesheet" href="bootstrap.css">
-
 <body>
 
     <p align="right">
@@ -97,7 +79,7 @@
                         <a href="YearLineups.php"><font size="2">Year Linups</font></a>
                     </div>
             </td>
-            <td style="padding:0 15px 0 40px;">
+            <td style="padding:0 15px 0 20px;">
                 <div class="dropdown">
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
@@ -105,14 +87,14 @@
                         <a href="LatestTrailers.php"><font size="2">Latest Trailers</font></a>
                     </div>
             </td>
-            <td style="padding:0 15px 0 40px;">
+            <td style="padding:0 15px 0 20px;">
                 <div class="dropdown">
                     <button class="dropbtn"><b>Communities</b></button>
                     <div class="dropdown-content">
                         <a href="Forums.php"><font size="2">Forums</font></a>
                     </div>
             </td>
-            <td style="padding:0 15px 0 40px;">
+            <td style="padding:0 15px 0 20px;">
                 <div class="dropdown">
                     <button class="dropbtn"><b>Genre</b></button>
                     <div class="dropdown-content">
@@ -132,7 +114,7 @@
                         <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Suspense') ?>');"><font size="2">Suspense</font></a>
                     </div>
             </td>
-            <td style="padding:0 15px 0 40px;">
+            <td style="padding:0 15px 0 20px;">
                 <div class="dropdown">
                     <button class="dropbtn"><b>Ratings</b></button>
                     <div class="dropdown-content">
@@ -140,7 +122,7 @@
                         <a href="AllTime.php"><font size="2">All Time Bests</font></a>
                     </div>
             </td>
-            <td style="padding:0 15px 0 40px;">
+            <td style="padding:0 15px 0 20px;">
                 <div class="dropdown">
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
@@ -148,7 +130,7 @@
                         <a href="Notification.php"><font size="2">Notifications</font></a>
                     </div>
             </td>
-            <td style="padding:0 15px 0 250px;">
+            <td style="padding:10px 40px 0px 20px;">
 		<form action="search.php" method="post">
                 <form>
                 <input type="text" name="search" placeholder="Search..">
