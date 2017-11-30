@@ -1,11 +1,9 @@
-
 <html>
 <head>
     <style>
         footer {
             background-color: skyblue;
         }
-
         .button {
             background-color: #4CAF50;
             border: none;
@@ -18,26 +16,23 @@
             margin: 4px 2px;
             cursor: pointer;
         }
-
-        .input[type=text] {
-            width: 180px;
+        input[type=text] {
+            width: 130px;
             box-sizing: border-box;
             border: 2px solid #ccc;
             border-radius: 4px;
             font-size: 16px;
             background-color: white;
-            background-image: url('searchicon.png');
+            background-image: url("searchicon.png");
             background-position: 10px 10px;
             background-repeat: no-repeat;
             padding: 12px 20px 12px 40px;
             -webkit-transition: width 0.4s ease-in-out;
             transition: width 0.4s ease-in-out;
         }
-
-            .input[type=text]:focus {
-                width: 85%;
+            input[type=text]:focus {
+                width: 100%;
             }
-
         .dropbtn {
             background-color: skyblue;
             color: red;
@@ -46,12 +41,10 @@
             border: none;
             cursor: pointer;
         }
-
         .dropdown {
             position: relative;
             display: inline-block;
         }
-
         .dropdown-content {
             display: none;
             position: absolute;
@@ -60,45 +53,34 @@
             box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
             z-index: 1;
         }
-
             .dropdown-content a {
                 color: black;
                 padding: 12px 16px;
                 text-decoration: none;
                 display: block;
             }
-
                 .dropdown-content a:hover {
                     background-color: #f1f1f1
                 }
-
         .dropdown:hover .dropdown-content {
             display: block;
         }
-
         .dropdown:hover .dropbtn {
             background-color: #3e8e41;
         }
+        a {
+            text-decoration:none;
+            }
     </style>
     <meta charset="utf-8" />
-    <title>The Movie Database</title>
+    <a href="index.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
+   
 </head>
+
+<link rel="stylesheet" href="bootstrap.css">
+
 <body>
-    <script>
-        function submitter()
-        {
-            var para = document.createElement("P");
-            var t = document.createTextNode(document.getElementById("typer").value);
-            var link = window.location.href;
-            var url = new URL(link);
-            var params = url.searchParams.get("movieid");
-            window.location.href = "Forums.php?type=1&name=" + document.getElementById("typer").value+"&movieid="+params;
-            document.getElementById("typer").value="";
-            para.appendChild(t);
-            document.getElementById("demo").appendChild(para);
-        }
-    </script>
-    <font color="Red" size="5">The Movie Database</font>
+
     <p align="right">
         <a href="signin.html" class="button">Login</a>
         <a href="signup.html" class="button">Sign Up</a>
@@ -128,27 +110,26 @@
                     <button class="dropbtn"><b>Communities</b></button>
                     <div class="dropdown-content">
                         <a href="Forums.php"><font size="2">Forums</font></a>
-                        <a href="Blogs.php"><font size="2">Blogs</font></a>
-                        <a href="Articles.php"><font size="2">Articles</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 40px;">
                 <div class="dropdown">
                     <button class="dropbtn"><b>Genre</b></button>
                     <div class="dropdown-content">
-                        <a href="Action.php"><font size="2">Action</font></a>
-                        <a href="Adventure.php"><font size="2">Adventure</font></a>
-                        <a href="Animated.php"><font size="2">Animated</font></a>
-                        <a href="Comedy.php"><font size="2">Comedy</font></a>
-                        <a href="Drama.php"><font size="2">Drama</font></a>
-                        <a href="Documentary.php"><font size="2">Documentary</font></a>
-                        <a href="Fantasy.php"><font size="2">Fantasy</font></a>
-                        <a href="Foreign.php"><font size="2">Foreign</font></a>
-                        <a href="Horror.php"><font size="2">Horror</font></a>
-                        <a href="Romance.php"><font size="2">Romance</font></a>
-                        <a href="ScienceFiction.php"><font size="2">Science Fiction</font></a>
-                        <a href="Supernatural.php"><font size="2">Supernatural</font></a>
-                        <a href="Suspense.php"><font size="2">Suspense</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Action') ?>');"><font size="2"></font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Action') ?>');"><font size="2">Action</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Adventure') ?>');"><font size="2">Adventure</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Animated') ?>');"><font size="2">Animated</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Comedy') ?>');"><font size="2">Comedy</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Drama') ?>');"><font size="2">Drama</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Documentary') ?>');"><font size="2">Documentary</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Fantasy') ?>');"><font size="2">Fantasy</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Foreign') ?>');"><font size="2">Foreign</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Horror') ?>');"><font size="2">Horror</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Romance') ?>');"><font size="2">Romance</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('ScienceFiction') ?>');"><font size="2">Science Fiction</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Supernatural') ?>');"><font size="2">Supernatural</font></a>
+                        <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Suspense') ?>');"><font size="2">Suspense</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 40px;">
@@ -157,7 +138,6 @@
                     <div class="dropdown-content">
                         <a href="Top.php"><font size="2">Top Rated This Year</font></a>
                         <a href="AllTime.php"><font size="2">All Time Bests</font></a>
-                        <a href="MostPopular.php"><font size="2">Most Popular</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 40px;">
@@ -165,7 +145,7 @@
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
                         <a href="Watchlist.php"><font size="2">Watchlist</font></a>
-                        <a href="Notification.php"><font size="2">Notifcations</font></a>
+                        <a href="Notification.php"><font size="2">Notifications</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 250px;">
@@ -173,15 +153,13 @@
                 <form>
                 <input type="text" name="search" placeholder="Search..">
                 </form>
-
 		
 	</td>
         </tr>
     </table>
     <br /><br />
-    <font size="5" color="red">Forums</font>
-    <br />
-        <?php
+    <p id="demo"><font size="5" color="red">All Time Bests</font>
+    <?php
             require_once("movies.php.inc");
             require_once("registerforum.php.inc");
             $db = new forumsdb();
@@ -204,11 +182,49 @@
               $db->getComments($movieid);
             }
         ?>
-    <p id="demo"></p>
+        </p>
     
-    <input type="text" id="typer" placeholder="Type Here" style="width: 1400px;" accesskey="Enter">
-    <button type="submit" name="submitting" onclick="submitter()">Enter</button>
-    <br /><br />
+    <?php
+    function display($value)
+    {
+    echo $value;
+    echo "<br><br><br><br>";
+    require_once('get_host_info.inc');
+    require_once('rabbitMQLib.inc');
+    $request = array();
+    $request['type'] = "genre";
+    $request['genre'] = $value;
+    $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
+    $response = $client->send_request($request);
+    $r = json_decode($response, true);
+    echo "<table>";
+    $counter = 0;
+    foreach ($r as $movie)
+    {
+    if ($counter === 0)
+    {
+        echo "<tr>";
+    }
+    else if ($counter === 4)
+    {
+        echo "</tr>";
+        $counter = 0;
+    }
+    echo "<td>";
+    $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+    $value = $movie["movieId"];
+    $link = "Forums.php?type=2&movieid=$value";
+    echo "<a href=$link><img src=$path></a><br>";
+    echo $movie['title']."<br>";
+    echo $movie['releaseDate'];
+    echo "</td>";
+    
+    $counter++;
+    }
+    echo "</table>";
+    $payload = json_encode($response);
+    }
+    ?>
     <footer>
         <center>
             <table>
@@ -226,10 +242,9 @@
         <br /><br />
         <center>By: Manish Singh, Anthony Morales, Shanon Hargrave, Brian Omoni, Yaghsha Shah</center>
         <br />
-        <center>Contact information: 
-        <a href="mailto:GFY@njit.edu">GFY@njit.edu</a>.</center>
+        <center>Contact information: <a href="mailto:GFY@njit.edu">GFY@njit.edu</a>.</center>
         <br />
         <center>Copyright Because I Said So! All Rights SUYA</center>
     </footer>
 </body>
-<html>
+</html>
