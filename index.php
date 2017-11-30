@@ -71,57 +71,6 @@
         a {
             text-decoration:none;
             }
-            * {box-sizing: border-box;}
-
-body {margin:0;font-family:Arial}
-
-.topnav {
-  overflow: hidden;
-  background-color: #e9e9e9;
-}
-
-.topnav a {
-  float: left;
-  display: block;
-  color: black;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 17px;
-}
-
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-.topnav a.active {
-  background-color: #2196F3;
-  color: white;
-}
-
-.topnav input[type=text]{
-  float: right;
-  padding: 6px;
-  margin-top: 8px;
-  margin-right: 16px;
-  border: none;
-  font-size: 17px;
-}
-
-@media screen and (max-width: 600px) {
-  .topnav a, .topnav input[type=text] {
-    float: none;
-    display: block;
-    text-align: left;
-    width: 100%;
-    margin: 0;
-    padding: 14px;
-  }
-  .topnav input[type=text] {
-    border: 1px solid #ccc;  
-  }
-}
     </style>
     <meta charset="utf-8" />
     <a href="index.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
@@ -199,13 +148,13 @@ body {margin:0;font-family:Arial}
                         <a href="Notification.php"><font size="2">Notifications</font></a>
                     </div>
             </td>
-            <td style="padding:0 15px 0 250px;">
-                <div class="topnav">
+            <td style="padding:0 15px 0 40px;">
+                
 		<form action="search.php" method="post">
                 <form>
                 <input type="text" name="search" placeholder="Search..">
                 </form>
-		</div>
+		
 	</td>
         </tr>
     </table>
