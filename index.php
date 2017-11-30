@@ -17,7 +17,7 @@
             cursor: pointer;
         }
         input[type=text] {
-            width: 130px;
+            width: 400px;
             box-sizing: border-box;
             border: 2px solid #ccc;
             border-radius: 4px;
