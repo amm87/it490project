@@ -1,4 +1,5 @@
 <?php
+session_start();
 class loginDB
 {
 
@@ -27,7 +28,7 @@ public function validateLogin($username,$password)
        
 	while ($row = $response->fetch_assoc())
 	{
-	        // $_SESSION['id'] = $row["id"];
+                $_SESSION['user'] = $row["name"];
 		//echo "checking password for $username".PHP_EOL;
 		if ($row["password"] == $pw)
 		{
