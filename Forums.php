@@ -167,6 +167,13 @@
         </p>
     
     <?php
+    /**
+    * Returns all the movies in the Database based off of @param value
+    * Images are linked so that when you click on an image, you are 
+    * taken to Forums.php to comment and view comments on that specific movie. 
+    * 
+    * @param value is the name of the Genre the user click on for viewing.
+    */
     function display($value)
     {
     echo $value;

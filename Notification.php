@@ -142,45 +142,13 @@
     <br /><br />
     <p id="demo"><font size="5" color="red">Notifications</font>
     <?php
-        require_once("movies.php.inc");
-        
-      require_once('get_host_info.inc');
-      require_once('rabbitMQLib.inc');
-
-      $request = array();
-      $request['type'] = "upcoming";
-      $request['range'] = "week";
-      $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
-      $response = $client->send_request($request);
-      $r = json_decode($response, true);
-      echo "<table>";
-      $counter = 0;
-      foreach ($r as $movie)
-      {
-        if ($counter === 0)
-        {
-          echo "<tr>";
-        }
-        else if ($counter === 4)
-        {
-          echo "</tr>";
-          $counter = 0;
-        }
-
-        echo "<td>";
-        $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-        echo "<a href='Forums.php?type=2&movieid=".$movie["movieId"]."'><img src='$path'/></a><br>";
-        echo $movie['title']."<br>";
-        echo $movie['releaseDate'];
-        echo "</td>";
-        
-        $counter++;
-      }
-      echo "</table>";
-        ?>
-    </p>
-    
-    <?php
+    /**
+    * Returns all the movies in the Database based off of @param value
+    * Images are linked so that when you click on an image, you are 
+    * taken to Forums.php to comment and view comments on that specific movie. 
+    * 
+    * @param value is the name of the Genre the user click on for viewing.
+    */
     function display($value)
     {
     echo $value;

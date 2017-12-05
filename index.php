@@ -1,49 +1,40 @@
-<?php
-session_start();
-include ("login.php.inc");
-include('functions.php');
-require_once('path.inc');
-require_once('get_host_info.inc');
-require_once('rabbitMQLib.inc');
-$name = $_POST["user"]; 
-$pass = $_POST["password"];
+<!DOCTYPE html>
+<html>
+<form action="signin.php" method="post">
 
+<fieldset>
 
-$client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+<article>
 
-if (isset($argv[1]))
-{
-  $msg = $argv[1];
-}
-else
-{
-  $msg = "test message";
-}
+<header>
 
-$request = array();
-$request['type'] = "login";
-$_SESSION['uid'] = 5;
-$request['username'] = $name;
-$request['password'] = hashPassword($pass);
-$request['message'] = $msg;
-$response = $client->send_request($request);
-//$response = $client->publish($request);
+<h1> <center> Login </center> </h1>
 
-$payload = json_encode($response);
-//echo $payload;
-if($payload =="true" ){
-    
-    echo header("Location: ThisMonth.php");
-}
+</header>
 
-else{
-    
-    echo "<script language='JavaScript'>
-	    alert('Username or Password was entered incorrectly')
-	    location='signin.php'
-	    </script>";
-}
+<center> User &nbsp &nbsp &nbsp &nbsp &nbsp <input type=text name="user"/> 
+	
+	
+	<br><br> </center>
+	
+<center> Password &nbsp <input type="password" name="password"/>
+	<br><br><br> </center>
 
-?>
+<center> Don't have an account? Click <a href="signup.html"<html>here</a> to sign up.<br></center>
+<center> <input value="Submit" type="submit" onsubmit="f()"> </center>
 
+<style>
 
+input[type="submit"]
+	
+	{
+	background-color:#f4a341;
+	border-radius: 10px;
+	}
+
+</style>
+
+</fieldset>
+
+</form>
+<html>
