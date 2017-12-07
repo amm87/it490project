@@ -7,6 +7,10 @@ class forumsdb
 
 private $registerdb;
 
+    /**
+    * Verify and connect to database via credentials provided below
+    * If connection was not established, echo a statement saying so
+    */
 public function __construct()
 {
 	$this->registerdb = new mysqli("192.168.1.150","root","123456","it490project");
@@ -19,6 +23,10 @@ public function __construct()
 	//echo "correctly connected to database".PHP_EOL;
 }
 
+    /**
+    * Grab the comments made and saved from the database using @param
+    * @param value is the ID of the movie
+    */
 public function getComments($movieId)
     {
       $query = "select * from moviecomments where movieid = '$movieId'";
@@ -31,6 +39,11 @@ public function getComments($movieId)
       }
     }
 
+    /**
+    * Write the comments saved to the page for viewing using @param
+    * @param comment is the comment we have saved in the database
+    * @param moveID is the ID of the movie we were given to begin with
+    */
 public function writeComment($comment, $movieId)
 {
     //	if ($this->getClientId($comment) != 0)

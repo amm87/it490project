@@ -4,6 +4,10 @@ class registerDB
 {
 private $registerdb;
 
+    /**
+    * Verify and connect to database via credentials provided below
+    * If connection was not established, echo a statement saying so
+    */
 public function __construct()
 {
 	$this->registerdb = new mysqli('127.0.0.1','root','abc123','it490');
@@ -16,6 +20,10 @@ public function __construct()
 	//echo "correctly connected to database".PHP_EOL;
 }
 
+    /**
+    * Get the client ID
+    * @param is the name of the username
+    */
     public function getClientId($name)
     {
 	$query = "select id from users where username = '$name';";
@@ -33,6 +41,14 @@ public function __construct()
 	return 0;
     }
 
+    /**
+    * Register a user with the provided info and add them to the database
+    * @param username is the username the user has provided
+    * @param password is the password the user has provided
+    * @param fname is the first name the user has provided
+    * @param lname is the last name the user has provided
+    * @param email is the email the user has provided
+    */
 public function registerUser($username,$password,$fname,$lname,$email)
 {
     	if ($this->getClientId($username) != 0)

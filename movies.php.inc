@@ -5,6 +5,10 @@
     private $database;
     private $client;
 
+    /**
+    * Verify and connect to database via credentials provided below
+    * If connection was not established, echo a statement saying so
+    */
     public function __construct()
     {
       $this->database = new mysqli('192.168.1.150', 'root', '123456', 'it490');
@@ -15,6 +19,12 @@
       }
     }    
     
+    
+    /**
+    * Grab the movie name, picture, release date, etc. andd display it
+    * based off of the @param
+    * @param value is the ID of the movie
+    */
     public function showMovieInfo($movieId)
     {
       $query = "select * from movies where id = '$movieId'";
@@ -27,6 +37,12 @@
 
     }
 
+    /**
+    * Add moved to an Array which can be used to pull data from later
+    * If the movie is already in the Array, do not add it again
+    * @param value resultArray is the Array we are constantly using
+    * @param value exclude is the movie we are checking if it is in the Array
+    */
     private function displayMovies($resultArray, $exclude)
     {
       $counter = 0;
@@ -45,6 +61,11 @@
       return $response;
     }
 
+    /**
+    * Get the comments for a specific movie and display it
+    * Get the movie based off of the @param
+    * @param value the movie ID we use to pull the comments for it
+    */
     public function getComments($movieId)
     {
       $query = "select * from moviecomments where id = '$movieId'";
@@ -55,6 +76,11 @@
       }
     }
  
+    /**
+    * Grab the movie name based off of the genre and display it
+    * based off of the @param
+    * @param value is the genre the user is requesting to see
+    */
     public function moviesByGenre($genre)
     {
       $query = "select * from movies where genre = '$genre';";
@@ -71,11 +97,20 @@
         return  $this->displayMovies($resultArray, array());
     }
     
+    /**
+    * Add a movie to the current database 
+    * @param value is the query we use to connect 
+    */
     public function addMovie($query)
     {
       $results = $this->database->query($query);
     }
-     
+    
+    /**
+    * Grab the movies based off the newest release and
+    * send to the displayMovies function to add to the 
+    * array
+    */
     public function releasedMovies()
     {
         $query = "select * from movies;";
@@ -97,6 +132,11 @@
         $this->displayMovies($resultArray, $exclude);
     }
 
+    /**
+    * Grab the movies based off the @param 
+    * and send to the Array and display to the page
+    * @param value is the year, month, or week you want to see
+    */
     public function upcomingMovies($range)
     {
       $query = "select * from movies;";
