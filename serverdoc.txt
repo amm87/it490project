@@ -1,0 +1,90 @@
+Server Doc
+
+Webserver
+Install the following
+Apache2
+Php7.0
+Php-amqp
+Php-mysql
+libapache2-mod-php7.0
+
+Edit the php ini files in /etc/php/7.0/ apache2 and /etc/php/7.0/cli and add extension= amqp.so.
+Configure static ip by editing the /etc/network/interfaces files and set the following
+        
+            Auto enp0s3
+            Iface enp0s3 inet static
+                Address 192.168.1.110
+                Netmask 255.255.255.0
+                Network 192.168.1.0
+                Broadcast 192.168.1.255
+Configure HTTPS by sym linking default-ssl.conf to sites-enabled. Removed any existing files and then sudo a2en mod ssl.
+Restart apache2
+
+-Deployment
+    - install the following
+        - SSH
+    -Configure static ip by editing the /etc/network/interfaces files and set the following
+        
+            Auto enp0s3
+            Iface enp0s3 inet static
+                Address 192.168.1.151
+                Netmask 255.255.255.0
+                Network 192.168.1.0
+                Broadcast 192.168.1.255
+
+RabbitMQ
+- install the following
+        - rabbitmq-server
+        - php
+        - php-amqp
+        -php-mysql
+        - rabbitmq-plugins enable rabbitmqmanagement
+    
+
+-Configure static ip by editing the /etc/network/interfaces files and set the following
+        
+            Auto enp0s3
+            Iface enp0s3 inet static
+                Address 192.168.1.150
+                Netmask 255.255.255.0
+                Network 192.168.1.0
+                Broadcast 192.168.1.255
+Configure rabbitmq
+- virtual host
+    - Exchanges
+    -Queues
+    
+
+Logging Server
+
+
+
+
+
+
+
+
+Mysql
+Install mysql
+Configure static ip by editing the /etc/network/interfaces files and set the following
+             Auto enp0s3
+            Iface enp0s3 inet static
+            Address 192.168.1.140
+                Netmask 255.255.255.0
+            Network 192.168.1.0
+            Broadcast 192.168.1.255
+Server IP addresses
+192.168.1.140 - Master
+192.168.1.142-Slave 1
+192.168.1.120 – Slave 2        
+
+Configure master with the following:
+sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf
+Create user and grant replication privileges GRANT REPLICATION SLAVE ON *.* TO 'slave_repl@'%' IDENTIFIED BY 'slavepass';
+
+
+Configure slave with the following:
+Using sudo nano /etc/mysql/mysql.conf.d/mysqld.cnf edit mysqld.cnf just as you did in the master database server.
+After restarting mysql use the command below to give login credentials to the server,log-file position and to make the current server a slave to the master.
+CHANGE MASTER TO MASTER_HOST='192.168.1.140',MASTER_USER='slave_repl', MASTER_PASSWORD='slavepass', MASTER_LOG_FILE='mysql-bin.000220', MASTER_LOG_POS=  154;
+Activate slave
