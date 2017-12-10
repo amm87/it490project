@@ -142,6 +142,9 @@
     <p id="demo"><font size="5" color="red">All Time Bests</font></p>
     
     <?php
+    /**
+    * Get the name of the signed in user
+    */
     function naming()
     {
     session_start();
