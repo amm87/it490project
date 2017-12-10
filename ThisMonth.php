@@ -167,7 +167,7 @@
     }
     echo "<td>";
     $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-    $value = $movie["movieId"];
+    $value = $movie["id"];
     $link = "Forums.php?type=2&movieid=$value";
     echo "<a href=$link><img src=$path></a><br>";
     echo $movie['title']."<br>";
@@ -217,7 +217,7 @@
     }
     echo "<td>";
     $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-    $value = $movie["movieId"];
+    $value = $movie["id"];
     $link = "Forums.php?type=2&movieid=$value";
     echo "<a href=$link><img src=$path></a><br>";
     echo $movie['title']."<br>";

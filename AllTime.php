@@ -144,7 +144,8 @@
     <?php
     function naming()
     {
-    echo "Manish";
+    session_start();
+    echo $_SESSION['user'];
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "<a href=index.php class=button>Sign Out</a>";
     }
@@ -182,7 +183,7 @@
     }
     echo "<td>";
     $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-    $value = $movie["movieId"];
+    $value = $movie["id"];
     $link = "Forums.php?type=2&movieid=$value";
     echo "<a href=$link><img src=$path></a><br>";
     echo $movie['title']."<br>";

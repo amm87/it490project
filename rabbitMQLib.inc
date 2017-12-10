@@ -1,7 +1,7 @@
 <?php
 #require_once ('/home/shannon/Documents/IT490/it490project/vendor/autoload.php');
 require_once('get_host_info.inc');
-#use PhpAmqpLib\Conection\AMQPStreamConnection;
+#=use PhpAmqpLib\Conection\AMQPStreamConnection;
 #use PhpAmqpLib\Connection\AMQPConnection;
 
 class rabbitMQServer

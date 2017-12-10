@@ -1,5 +1,4 @@
 <?php
-session_start();
 class loginDB
 {
 
@@ -38,7 +37,6 @@ public function validateLogin($username,$password)
        
 	while ($row = $response->fetch_assoc())
 	{
-                $_SESSION['user'] = $row["name"];
 		//echo "checking password for $username".PHP_EOL;
 		if ($row["password"] == $pw)
 		{
@@ -50,7 +48,7 @@ public function validateLogin($username,$password)
 	 //   alert('Username or Password was entered incorrectly')
 	  //  location='signin.html'
 	  //  </script>";
-	  echo "wrong pass";
+      echo "wrong pass";
       return false; 
 }
 }

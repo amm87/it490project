@@ -30,7 +30,7 @@
     }
     $image = $imagePaths[0];
 
-    $query = "insert into movies(id, title, genre, releaseDate, rating, imagePath)
+    $query = "insert into movies(movieId, title, genre, releaseDate, rating, imagePath)
  values('$movieID', '$movieTitle', '$movieGenre', '$releaseDate', '$rating', '$image');";
         $db->addMovie($query);
   }

@@ -1,5 +1,4 @@
 <?php
-
   class moviedb
   {
     private $database;
@@ -68,7 +67,7 @@
     */
     public function getComments($movieId)
     {
-      $query = "select * from moviecomments where id = '$movieId'";
+      $query = "select * from moviecomments where movieID = '$movieId'";
       $result = $this->database->query($query);
       while ($row = $result->fetch_assoc())
       {
@@ -88,7 +87,6 @@
       $counter = 0;
       $resultArray = array();
       $request = array();
-
         while ($movie = $result->fetch_assoc())
         {
           $resultArray[$counter] = $movie;
@@ -146,6 +144,7 @@
       $resultArray = array();
       $exclude = array();
       $counter = 0;
+     
       while ($movie = $result->fetch_assoc())
       {
         $resultArray[$counter] = $movie;

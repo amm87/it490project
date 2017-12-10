@@ -19,10 +19,9 @@ else
 {
   $msg = "test message";
 }
-
+$_SESSION["user"] = $name;
 $request = array();
 $request['type'] = "login";
-$_SESSION['uid'] = 5;
 $request['username'] = $name;
 $request['password'] = hashPassword($pass);
 $request['message'] = $msg;
@@ -33,14 +32,14 @@ $payload = json_encode($response);
 //echo $payload;
 if($payload =="true" ){
     
-    echo header("Location: ThisMonth.php");
+    echo header("Location: AllTime.php");
 }
 
 else{
     
     echo "<script language='JavaScript'>
 	    alert('Username or Password was entered incorrectly')
-	    location='signin.php'
+	    location='index.php'
 	    </script>";
 }
 
