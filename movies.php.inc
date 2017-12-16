@@ -47,23 +47,24 @@
       $counter = 0;
       $otherCounter = 0;
       $result = array();
+      #$msg = "hvcshvvshvhsbdjavhsvhb";
       foreach ($resultArray as $movie)
       {
-        $time = strtotime($movie['releaseDate']);
-        $startTime = strtotime("first day of this year");
-        $endTime  =  strtotime("last day of this year");
-        if (($time <= $startTime) || ($time >= $endTime))
-       # {
-            $msg = $msg + "ANT ";
-        #}
+       // $time = strtotime($movie['releaseDate']);
+       // $startTime = strtotime("first day of this year");
+       // $endTime  =  strtotime("last day of this year");
+       // if (($time <= $startTime) || ($time >= $endTime))
+        //{
+            //$msg = $msg + "ANT ";
+        //}
         if (!in_array($movie, $exclude))
         {
             $result[$otherCounter] = $movie;
             $otherCounter++;    
         }
       }
-      $msg = wordwrap($msg,70);
-      mail("sh385@njit.edu","My subject",$msg);
+      #$msg = wordwrap($msg,70);
+    # mail("sh385@njit.edu","My subject","Hello");
       $response = json_encode($result);
       return $response;
     }

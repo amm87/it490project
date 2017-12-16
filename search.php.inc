@@ -31,6 +31,7 @@ public function searchMovie($moviename)
     {
 	$query = "select id from movies where title = '$moviename';";
 	$results = $this->db->query($query);
+	$temp = array();
 	if (!$results)
 	{
 	    //$this->logger->log("error with results: ".$this->db->error);
@@ -39,7 +40,10 @@ public function searchMovie($moviename)
         $client = $results->fetch_assoc();
 	if (isset($client['id']))
 	{
-	    return $client['id'];
+            $temp["id"] = $client["id"];
+            $temp["image"] = $client["imagePath"];
+            $temp["title"] = $client["title"];
+	    return $temp;
 	}
 	return 0;
     }

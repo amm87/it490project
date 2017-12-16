@@ -14,7 +14,7 @@ if (isset($argv[1]))
 }
 else
 {
-  $msg = "test message";
+  $msg = "Movie not found.";
 }
 
 $request = array();
@@ -22,7 +22,11 @@ $request['type'] = "search";
 $request['title'] = $name;
 $response = $client->send_request($request);
 $payload = json_decode($response);
-echo $payload;
+echo $name;
 
+$path = "http://image.tmdb.org/t/p/w185/".$payload["image"];
+$value = $payload["id"];
+$link = "Forums.php?type=2&movieid=$value";
+echo "<a href=$link><img src=$path></a><br>";
 
 ?>
