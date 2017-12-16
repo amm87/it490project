@@ -61,11 +61,10 @@
    
 </head>
 
-<body>
+<body onload="document.getElementById('demo1').innerHTML = ('<?php naming() ?>');">
 
-    <p align="right">
-        <a href="signin.html" class="button">Login</a>
-        <a href="signup.html" class="button">Sign Up</a>
+    <p align="right" id="demo1">
+        
     </p>
     <table bgcolor="skyblue">
 
@@ -143,6 +142,16 @@
     <p id="demo"><font size="5" color="red">Top Rated This Year</font></p>
     
     <?php
+    /**
+    * Get the name of the signed in user
+    */
+    function naming()
+    {
+    session_start();
+    echo $_SESSION['user'];
+    echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
+    echo "<a href=index.php class=button>Sign Out</a>";
+    }
     /**
     * Returns all the movies in the Database based off of @param value
     * Images are linked so that when you click on an image, you are 
