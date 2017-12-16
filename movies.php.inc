@@ -50,8 +50,8 @@
       foreach ($resultArray as $movie)
       {
         $time = strtotime($movie['releaseDate']);
-        $startTime = strtotime("first day of this month");
-        $endTime  =  strtotime("last day of this month");
+        $startTime = strtotime("first day of this year");
+        $endTime  =  strtotime("last day of this year");
         if (($time <= $startTime) || ($time >= $endTime))
        # {
             $msg = $msg + "ANT ";
