@@ -67,7 +67,7 @@
             }
     </style>
     <meta charset="utf-8" />
-    <a href="index.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
+    <a href="AllTime.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
    
 </head>
 
@@ -94,7 +94,7 @@
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
                         <a href="InTheatres.php"><font size="2">In Theatres</font></a>
-                        <a href="LatestTrailers.php"><font size="2">Latest Trailers</font></a>
+                         <a href="Mapview.php"><font size="2">Map View</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 20px;">
