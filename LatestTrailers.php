@@ -141,7 +141,14 @@
         </tr>
     </table>
     <br /><br />
-    <p id="demo"><font size="5" color="red">Latest Trailers</font></p>
+    <p id="demo"><font size="5" color="red">Latest Trailers</font> 
+    <br><br>
+    <table stye="width: 60%; height:60%;">
+        <?php
+            require_once("google.php");
+        ?>
+    </table>
+    </p>
     
     <?php
     /**
