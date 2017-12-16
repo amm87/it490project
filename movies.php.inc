@@ -49,7 +49,15 @@
       $result = array();
       foreach ($resultArray as $movie)
       {
-        
+        $time = strtotime($movie['releaseDate']);
+        $startTime = strtotime("first day of this week");
+        $endTime  =  strtotime("last day of this week");
+       # if (($time <= $startTime) || ($time >= $endTime))
+       # {
+            $msg = "Test message";
+            $msg = wordwrap($msg,70);
+            mail("sh385@njit.edu","My subject",$msg);
+        #}
         if (!in_array($movie, $exclude))
         {
             $result[$otherCounter] = $movie;
