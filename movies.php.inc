@@ -50,13 +50,11 @@
       foreach ($resultArray as $movie)
       {
         $time = strtotime($movie['releaseDate']);
-        $startTime = strtotime("first day of this week");
-        $endTime  =  strtotime("last day of this week");
-       # if (($time <= $startTime) || ($time >= $endTime))
+        $startTime = strtotime("first day of this month");
+        $endTime  =  strtotime("last day of this month");
+        if (($time <= $startTime) || ($time >= $endTime))
        # {
-            $msg = "Test message";
-            $msg = wordwrap($msg,70);
-            mail("sh385@njit.edu","My subject",$msg);
+            $msg = $msg + "ANT ";
         #}
         if (!in_array($movie, $exclude))
         {
@@ -64,6 +62,8 @@
             $otherCounter++;    
         }
       }
+      $msg = wordwrap($msg,70);
+      mail("sh385@njit.edu","My subject",$msg);
       $response = json_encode($result);
       return $response;
     }
