@@ -10,6 +10,7 @@ $pass = $_POST["password"];
 
 
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
+$client_2 = new rabbitMQClient("rabbitMQMail.ini", "testServer");
 
 if (isset($argv[1]))
 {
@@ -21,17 +22,21 @@ else
 }
 $_SESSION["user"] = $name;
 $request = array();
+$request_2 = array();
 $request['type'] = "login";
 $request['username'] = $name;
 $request['password'] = hashPassword($pass);
 $request['message'] = $msg;
 $response = $client->send_request($request);
-//$response = $client->publish($request);
+
+$request_2["type"] = "email";
+$request_2["name"] = $name;
+$request_2["email_address"] = "ml394@njit.edu";
+$client_2->publish($request_2);
 
 $payload = json_encode($response);
 //echo $payload;
 if($payload =="true" ){
-    
     echo header("Location: AllTime.php");
 }
 

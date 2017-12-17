@@ -47,24 +47,14 @@
       $counter = 0;
       $otherCounter = 0;
       $result = array();
-      #$msg = "hvcshvvshvhsbdjavhsvhb";
       foreach ($resultArray as $movie)
       {
-       // $time = strtotime($movie['releaseDate']);
-       // $startTime = strtotime("first day of this year");
-       // $endTime  =  strtotime("last day of this year");
-       // if (($time <= $startTime) || ($time >= $endTime))
-        //{
-            //$msg = $msg + "ANT ";
-        //}
         if (!in_array($movie, $exclude))
         {
             $result[$otherCounter] = $movie;
             $otherCounter++;    
         }
       }
-      #$msg = wordwrap($msg,70);
-    # mail("sh385@njit.edu","My subject","Hello");
       $response = json_encode($result);
       return $response;
     }
@@ -102,6 +92,38 @@
           $counter++;
         }
         return  $this->displayMovies($resultArray, array());
+    }
+    
+    public function sendEmail($name, $email_address)
+    {
+      $query = "select * from movies";
+      $result = $this->database->query($query);
+      $counter = 0;
+      $resultArray = array();
+      $request = array();
+      $to = $email_address;
+      $from = "shannon@shannon-virtualbox";
+      $headers = "From: $from\r\n";
+      $headers .= "Content-type: text/html\r\n";
+      $msg = "<html>"."<body>";
+        while ($movie = $result->fetch_assoc())
+        {
+            $time = strtotime($movie['releaseDate']);
+            $startTime = strtotime("monday this week");
+            $endTime  =  strtotime("sunday this week");
+            
+        if (($time >= $startTime) && ($time <= $endTime))
+        {
+             $msg = $msg."<p>".$movie["title"]."</p><br>";
+             $value = $movie["id"];
+             
+             $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+             $msg = $msg."<img src=$path></a><br>";
+        }
+        }
+        $msg = $msg."</body>"."</html>";
+        $msg = wordwrap($msg,70);
+        mail($to,"My subject",$msg, $headers);
     }
     
     /**
@@ -175,7 +197,7 @@
           $endTime  =  strtotime("last day of December this year");
         }
 
-        if (($time <= $startTime) || ($time >= $endTime))
+        if (($time >= $startTime) && ($time <= $endTime))
         {
           $exclude[$counter] = $movie;
         }
