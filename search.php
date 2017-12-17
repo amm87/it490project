@@ -28,5 +28,6 @@ $path = "http://image.tmdb.org/t/p/w185/".$name["image"];
 $value = $name["id"];
 $link = "Forums.php?type=2&movieid=$value";
 echo "<a href=$link><img src=$path></a><br>";
-
+echo $path;
+echo $value;
 ?>
