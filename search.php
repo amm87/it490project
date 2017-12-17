@@ -20,6 +20,7 @@ else
 $request = array();
 $request['type'] = "search";
 $request['title'] = $name;
+//$request['imagePath'] = $image;
 $response = $client->send_request($request);
 $payload = json_decode($response);
 echo $payload["title"];
