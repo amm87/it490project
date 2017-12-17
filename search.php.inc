@@ -40,9 +40,9 @@ public function searchMovie($moviename)
         $client = $results->fetch_assoc();
 	if (isset($client['id']))
 	{
-            $temp["id"] = $client["id"];
-            $temp["image"] = $client["imagePath"];
-            $temp["title"] = $client["title"];
+            $temp["id"] = $client['id'];
+            $temp["image"] = $client['imagePath'];
+            $temp["title"] = $client['title'];
 	    return $temp;
 	}
 	return 0;
