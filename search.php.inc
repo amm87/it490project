@@ -41,8 +41,8 @@ public function searchMovie($moviename)
 	if (isset($client['id']))
 	{
             $temp["id"] = $client["id"];
-            $temp["image"] = $client["imagePath"];
-            $temp["title"] = $client["title"];
+            //$temp["image"] = $client["imagePath"];
+            //$temp["title"] = $client["title"];
 	    return $temp;
 	}
 	return 0;
