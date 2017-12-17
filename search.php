@@ -24,8 +24,8 @@ $response = $client->send_request($request);
 $payload = json_decode($response);
 echo $name;
 
-$path = "http://image.tmdb.org/t/p/w185/".$payload["image"];
-$value = $payload["id"];
+$path = "http://image.tmdb.org/t/p/w185/".$name["image"];
+$value = $name["id"];
 $link = "Forums.php?type=2&movieid=$value";
 echo "<a href=$link><img src=$path></a><br>";
 
