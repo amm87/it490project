@@ -22,8 +22,7 @@ $request['type'] = "search";
 $request['title'] = $name;
 $response = $client->send_request($request);
 $payload = json_decode($response);
-echo $name;
-echo $payload;
+echo $payload["title"];
 
 $path = "http://image.tmdb.org/t/p/w185/".$name["image"];
 $value = $name["id"];
