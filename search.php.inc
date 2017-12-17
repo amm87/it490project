@@ -33,7 +33,7 @@ public function searchMovie($moviename)
 	$results = $this->db->query($query);
 	$temp = array();
 	if (!$results)
-	
+	{
 	    //$this->logger->log("error with results: ".$this->db->error);
 	    return 0;
 	}
