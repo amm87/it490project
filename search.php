@@ -23,6 +23,7 @@ $request['title'] = $name;
 $response = $client->send_request($request);
 $payload = json_decode($response);
 echo $payload["title"];
+echo $payload;
 
 $path = "http://image.tmdb.org/t/p/w185/".$name["image"];
 $value = $name["id"];
