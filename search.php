@@ -20,15 +20,21 @@ else
 $request = array();
 $request['type'] = "search";
 $request['title'] = $name;
-//$request['imagePath'] = $image;
 $response = $client->send_request($request);
-$payload = json_decode($response);
-echo $payload["title"];
-echo $payload;
 
-$path = "http://image.tmdb.org/t/p/w185/".$name["image"];
-$value = $name["id"];
-$link = "Forums.php?type=2&movieid=$value";
-echo "<a href=$link><img src=$path></a><br>";
+$payload = json_decode($response, true);
+
+    echo "<td>";
+    $path = "http://image.tmdb.org/t/p/w185/".$payload["imagePath"];
+    $link = "Forums.php?type=2&movieid=$value";
+    echo "<a href=$link><img src=$path></a><br>";
+    echo $payload['title']."<br>";
+    echo $payload['releaseDate'];
+    echo "</td>";
+
+//$path = "http://image.tmdb.org/t/p/w185/".$name["image"];
+//$value = $name["id"];
+//$link = "Forums.php?type=2&movieid=$value";
+//echo "<a href=$link><img src=$path></a><br>";
 
 ?>

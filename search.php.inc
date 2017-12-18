@@ -29,7 +29,7 @@ public function __construct()
     */
 public function searchMovie($moviename)
     {
-	$query = "select id from movies where title = '$moviename';";
+	$query = "select * from movies where title = '$moviename';";
 	$results = $this->db->query($query);
 	$temp = array();
 	if (!$results)
@@ -38,14 +38,15 @@ public function searchMovie($moviename)
 	    return 0;
 	}
         $client = $results->fetch_assoc();
-	if (isset($client['id']))
-	{
-            $temp["id"] = $client["id"];
+	//if (isset($client['id']))
+	//{
+      //      $temp["id"] = $client["id"];
             //$temp["image"] = $client["imagePath"];
-            //$temp["title"] = $client["title"];
-	    return $temp;
-	}
-	return 0;
+    //$temp["title"] = $client["title"];
+            
+	    return json_encode($client);
+	//}
+	//return 0;
     }
 
 }
