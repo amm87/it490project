@@ -94,6 +94,12 @@
         return  $this->displayMovies($resultArray, array());
     }
     
+    /**
+    * Send movies coming out this week via email
+    * based off of the @param
+    * @param name is the name of the user with an account
+    * @param email_address is the email of that user
+    */
     public function sendEmail($name, $email_address)
     {
       $query = "select * from movies";
@@ -125,7 +131,7 @@
         $msg = wordwrap($msg,70);
         mail($to,"My subject",$msg, $headers);
     }
-    
+
     /**
     * Add a movie to the current database 
     * @param value is the query we use to connect 

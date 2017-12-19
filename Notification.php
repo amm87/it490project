@@ -118,7 +118,7 @@
                     <button class="dropbtn"><b>Ratings</b></button>
                     <div class="dropdown-content">
                         <a href="Top.php"><font size="2">Top Rated This Year</font></a>
-                        <a href="AllTime.php"><font size="2">All Time Bests</font></a>
+                        <a href="MainPage.php"><font size="2">Main Page</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 20px;">
