@@ -43,15 +43,15 @@ public function validateLogin($username,$password)
                     $temp = $row['id'];
                 
 			//header("Location: index.html");
-			return false;
+			echo "<script language='JavaScript'>
+                        alert('$temp')
+                        </script>";
+			return true;
 		}
 	}
-	//echo "<script language='JavaScript'>
-	 //   alert('Username or Password was entered incorrectly')
-	  //  location='signin.html'
-	  //  </script>";
+	
       echo "wrong pass";
       return false; 
-}
+}m
 }
 ?>
