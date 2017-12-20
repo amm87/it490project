@@ -11,7 +11,7 @@ $logger = new errorLogger(getcwd()."/error.log");
 $request = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "."Error occured in ".__FILE__." LINE ".__LINE__." TEST".PHP_EOL);
 $response = $client->publish($request);
 
-$logger->log($request['error']);
+//$logger->log($request['error']);
   
 
 ?>

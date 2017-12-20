@@ -1,5 +1,11 @@
 Server Doc
 
+
+*All Servers require a ssh key used ssh-keygen. Hit enter through all the prompts
+
+send ssh key using scp: /home/anthony/.ssh/id_rsa.pub shannon@192.168.1.130:/home/shannon/.ssh/authorized_keys
+
+
 Webserver
 Install the following
 Apache2
