@@ -66,7 +66,7 @@ function requestProcessor($request)
   }
   switch ($request['type'])
   {
-    case "search":
+    case "search";
         return doSearch($request["title"]);  
     case "genre":
       return showMovies("genre", $request['genre']);

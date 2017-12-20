@@ -13,7 +13,7 @@ private $salt;
     */
 public function __construct()
 {
-	$this->db = new mysqli("192.168.1.150","root","123456","it490");
+	$this->db = new mysqli("127.0.0.1","root","123456","it490");
 
 	if ($this->db->connect_errno != 0)
 	{
@@ -29,24 +29,19 @@ public function __construct()
     */
 public function searchMovie($moviename)
     {
-	$query = "select * from movies where title = '$moviename';";
+	$query = "select id from movies where title = '$moviename';";
 	$results = $this->db->query($query);
-	$temp = array();
 	if (!$results)
 	{
 	    //$this->logger->log("error with results: ".$this->db->error);
 	    return 0;
 	}
         $client = $results->fetch_assoc();
-	//if (isset($client['id']))
-	//{
-      //      $temp["id"] = $client["id"];
-            //$temp["image"] = $client["imagePath"];
-    //$temp["title"] = $client["title"];
-            
-	    return json_encode($client);
-	//}
-	//return 0;
+	if (isset($client['id']))
+	{
+	    return $client['id'];
+	}
+	return 0;
     }
 
 }

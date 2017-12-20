@@ -146,8 +146,8 @@
     require_once('get_host_info.inc');
     require_once('rabbitMQLib.inc');
     $request = array();
-    $request['startTime'] = "first day of this month";
-    $request['endTime'] = "last day of this month";
+    $request['type'] = "upcoming";
+    $request['range'] = "month";
     $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
     $response = $client->send_request($request);
     $r = json_decode($response, true);
