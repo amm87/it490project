@@ -34,14 +34,16 @@ public function validateLogin($username,$password)
 	$pw = $this->logindb->real_escape_string($password);
 	$statement = "select * from users where username = '$un';";
 	$response = $this->logindb->query($statement);
-       
+	
 	while ($row = $response->fetch_assoc())
 	{
 		//echo "checking password for $username".PHP_EOL;
 		if ($row["password"] == $pw)
 		{
+                    $temp = $row['id'];
+                
 			//header("Location: index.html");
-			return true;
+			return false;
 		}
 	}
 	//echo "<script language='JavaScript'>
