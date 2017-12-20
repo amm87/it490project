@@ -83,7 +83,8 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
-                         <a href="Mapview.php"><font size="2">Map View</font></a>
+                        <a href="TheatreList.php"><font size="2">Theatre List</font></a>
+                        <a href="Mapview.php"><font size="2">Map View</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 20px;">

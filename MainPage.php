@@ -82,6 +82,7 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
+                        <a href="TheatreList.php"><font size="2">Theatre List</font></a>
                         <a href="Mapview.php"><font size="2">Map View</font></a>
                     </div>
             </td>
@@ -129,7 +130,7 @@
         </tr>
     </table>
     <br /><br />
-    <p id="demo"><font size="5" color="red">All Time Bests</font></p>
+    <p id="demo"><font size="5" color="red">Main Page</font></p>
     
     <?php
     /**
