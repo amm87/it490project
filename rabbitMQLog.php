@@ -6,7 +6,8 @@ require_once('rabbitMQLib.inc');
 include_once('logging.php.inc');
 function requestProcessor($request)
 {
-    $fp = new errorLogger('/home/anthony/git/it490project/error.log');
+     echo getcwd()."error.log";
+  $fp = new errorLogger(getcwd()."/error.log");
   echo "received request".PHP_EOL;
   var_dump($request);
   $fp->log($request['error']);

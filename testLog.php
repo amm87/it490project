@@ -7,7 +7,7 @@ require_once('logging.php.inc');
 
 $client = new rabbitMQClient("rabbitMQLog.ini","testServer");
 $file = __FILE__." ";
-$logger = new errorLogger("/home/anthony/git/it490project/error.log");
+$logger = new errorLogger(getcwd()."/error.log");
 $request = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "."Error occured in ".__FILE__." LINE ".__LINE__." TEST".PHP_EOL);
 $response = $client->publish($request);
 /**require_once("logging.php.inc");

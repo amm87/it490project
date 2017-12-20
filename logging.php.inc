@@ -7,8 +7,9 @@ class errorLogger
     * Constructing a path to put the error logs in
     * @param is the path you are putting the log in
     */
-  public function __construct($outputfile = "/home/anthony/git/it490project/error.log")
+  public function __construct()
   {
+    $outputfile = getcwd()."/error.log";
     $this->fp = fopen($outputfile,"a");
   }
   
