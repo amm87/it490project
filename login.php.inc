@@ -40,18 +40,13 @@ public function validateLogin($username,$password)
 		//echo "checking password for $username".PHP_EOL;
 		if ($row["password"] == $pw)
 		{
-                    $temp = $row['id'];
-                
-			//header("Location: index.html");
-			echo "<script language='JavaScript'>
-                        alert('$temp')
-                        </script>";
-			return true;
+                    $_SESSION['userid'] = $row['id'];
+                    return true;
 		}
 	}
 	
       echo "wrong pass";
       return false; 
-}m
+}
 }
 ?>
