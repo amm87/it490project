@@ -82,7 +82,6 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
-                        <a href="InTheatres.php"><font size="2">In Theatres</font></a>
                          <a href="Mapview.php"><font size="2">Map View</font></a>
                     </div>
             </td>
@@ -113,20 +112,11 @@
                         <a onclick="document.getElementById('demo').innerHTML = ('<?php display('Suspense') ?>');"><font size="2">Suspense</font></a>
                     </div>
             </td>
-            <td style="padding:0 15px 0 40px;">
-                <div class="dropdown">
-                    <button class="dropbtn"><b>Ratings</b></button>
-                    <div class="dropdown-content">
-                        <a href="Top.php"><font size="2">Top Rated This Year</font></a>
-                        <a href="MainPage.php"><font size="2">Main Page</font></a>
-                    </div>
-            </td>
             <td style="padding:0 15px 0 20px;">
                 <div class="dropdown">
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
                         <a href="Watchlist.php"><font size="2">Watchlist</font></a>
-                        <a href="Notification.php"><font size="2">Notifications</font></a>
                     </div>
             </td>
             <td style="padding:10px 40px 0px 20px;">
@@ -139,9 +129,46 @@
         </tr>
     </table>
     <br /><br />
-    <p id="demo"><font size="5" color="red">Lineups For The Year</font></p>
-    
+    <p id="demo"><font size="5" color="red">This Year</font>
     <?php
+    echo "<br><br><br><br>";
+    require_once('get_host_info.inc');
+    require_once('rabbitMQLib.inc');
+    $request = array();
+    $request['type'] = "upcoming";
+    $request['range'] = "year";
+    $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
+    $response = $client->send_request($request);
+    $r = json_decode($response, true);
+    echo "<table>";
+    $counter = 0;
+    foreach ($r as $movie)
+    {
+    if ($counter === 0)
+    {
+        echo "<tr>";
+    }
+    else if ($counter === 4)
+    {
+        echo "</tr>";
+        $counter = 0;
+    }
+    echo "<td>";
+    $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+    $value = $movie["id"];
+    $link = "Forums.php?type=2&movieid=$value";
+    echo "<a href=$link><img src=$path></a><br>";
+    echo $movie['title']."<br>";
+    echo $movie['releaseDate'];
+    echo "</td>";
+    
+    $counter++;
+    }
+    echo "</table>";
+    $payload = json_encode($response);
+    ?>
+    
+    </p>
     /**
     * Get the name of the signed in user
     */

@@ -83,7 +83,6 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
-                        <a href="InTheatres.php"><font size="2">In Theatres</font></a>
                         <a href="Mapview.php"><font size="2">Map View</font></a>
                     </div>
             </td>
@@ -116,18 +115,9 @@
             </td>
             <td style="padding:0 15px 0 20px;">
                 <div class="dropdown">
-                    <button class="dropbtn"><b>Ratings</b></button>
-                    <div class="dropdown-content">
-                        <a href="Top.php"><font size="2">Top Rated This Year</font></a>
-                        <a href="MainPage.php"><font size="2">Main Page</font></a>
-                    </div>
-            </td>
-            <td style="padding:0 15px 0 20px;">
-                <div class="dropdown">
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
                         <a href="Watchlist.php"><font size="2">Watchlist</font></a>
-                        <a href="Notification.php"><font size="2">Notifications</font></a>
                     </div>
             </td>
             <td style="padding:10px 40px 0px 20px;">
@@ -140,7 +130,7 @@
         </tr>
     </table>
     <br /><br />
-    <p id="demo"><font size="5" color="red">This Months</font>
+    <p id="demo"><font size="5" color="red">This Month</font>
     <?php
     echo "<br><br><br><br>";
     require_once('get_host_info.inc');
