@@ -37,7 +37,7 @@ $client_2->publish($request_2);
 $payload = json_encode($response);
 //echo $payload;
 if($payload =="true" ){
-    echo header("Location: AllTime.php");
+    echo header("Location: MainPage.php");
 }
 
 else{
