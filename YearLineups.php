@@ -57,9 +57,10 @@
             }
     </style>
     <meta charset="utf-8" />
-    <a href="MainPage.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
+    <a href="Mainpage.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
    
 </head>
+
 
 <body onload="document.getElementById('demo1').innerHTML = ('<?php naming() ?>');">
 
@@ -83,7 +84,7 @@
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
                         <a href="TheatreList.php"><font size="2">Theatre List</font></a>
-                         <a href="Mapview.php"><font size="2">Map View</font></a>
+                        <a href="Mapview.php"><font size="2">Map View</font></a>
                     </div>
             </td>
             <td style="padding:0 15px 0 20px;">
@@ -130,7 +131,7 @@
         </tr>
     </table>
     <br /><br />
-    <p id="demo"><font size="5" color="red">This Year</font>
+    <p id="demo"><font size="5" color="red">This Month</font>
     <?php
     echo "<br><br><br><br>";
     require_once('get_host_info.inc');
@@ -159,7 +160,8 @@
     $value = $movie["id"];
     $link = "Forums.php?type=2&movieid=$value";
     echo "<a href=$link><img src=$path></a><br>";
-    echo $movie['title']."<br>";
+    $link_2 = "Watchlist.php?movie_id=".$value;
+    echo "<a href=$link_2>".$movie['title']."</a><br>";
     echo $movie['releaseDate'];
     echo "</td>";
     
@@ -170,13 +172,17 @@
     ?>
     
     </p>
-    /**
+    
+    <?php
+     /**
     * Get the name of the signed in user
     */
     function naming()
     {
     session_start();
     echo $_SESSION['user'];
+    echo $_SESSION["id"];
+    
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "<a href=index.php class=button>Sign Out</a>";
     }
@@ -214,7 +220,7 @@
     }
     echo "<td>";
     $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-    $value = $movie["movieId"];
+    $value = $movie["id"];
     $link = "Forums.php?type=2&movieid=$value";
     echo "<a href=$link><img src=$path></a><br>";
     echo $movie['title']."<br>";
