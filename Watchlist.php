@@ -1,12 +1,3 @@
-<?php
-        session_start();
-        require_once("watchlist.php.inc");
-    
-    
-        
-       $db = new watchdb();
-       echo $db->getWatch($_SESSION['uid']);
-        ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,7 +84,6 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
-                        <a href="InTheatres.php"><font size="2">In Theatres</font></a>
                          <a href="Mapview.php"><font size="2">Map View</font></a>
                     </div>
             </td>
@@ -126,17 +116,9 @@
             </td>
             <td style="padding:0 15px 0 20px;">
                 <div class="dropdown">
-                    <button class="dropbtn"><b>Ratings</b></button>
-                    <div class="dropdown-content">
-                        <a href="Top.php"><font size="2">Top Rated This Year</font></a>
-                        <a href="MainPage.php"><font size="2">Main Page</font></a>
-                    </div>
-            </td>
-            <td style="padding:0 15px 0 20px;">
-                <div class="dropdown">
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
-                        <a href="Watchlist.php"><font size="2">Watchlist</font></a>
+                        <a href="Watchlist.php?movie_id=-1"><font size="2">Watchlist</font></a>
                         <a href="Notification.php"><font size="2">Notifications</font></a>
                     </div>
             </td>
@@ -150,7 +132,51 @@
         </tr>
     </table>
     <br /><br />
-    <p id="demo"><font size="5" color="red">Watchlist</font></p>
+    <p id="demo"><font size="5" color="red">Watchlist</font>
+    <?php
+     require_once("watchlist.php.inc");
+    $db = new watchdb();
+    
+    $movie_id = $_GET["movie_id"];
+    $the_array = array();
+    
+    if ($movie_id == "-1")
+    {
+        $the_array = $db->getWatch();
+    }
+    else
+    {
+        $db->addWatchList($movie_id);
+        $the_array = $db->getWatch();
+    }
+    echo "<br><br><br><br>";
+    echo "<table>";
+    $counter = 0;
+    foreach ($the_array as $movie)
+    {
+    if ($counter === 0)
+    {
+        echo "<tr>";
+    }
+    else if ($counter === 4)
+    {
+        echo "</tr>";
+        $counter = 0;
+    }
+    echo "<td>";
+    $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+    $value = $movie["id"];
+    $link = "Forums.php?type=2&movieid=$value";
+    echo "<a href=$link><img src=$path></a><br>";
+    echo $movie['title']."<br>";
+    echo $movie['releaseDate'];
+    echo "</td>";
+    
+    $counter++;
+    }
+    echo "</table>";
+    ?>
+    </p>
     
     <?php
     /**
@@ -158,11 +184,13 @@
     */
     function naming()
     {
-    session_start();
+   session_start();
     echo $_SESSION['user'];
+    
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "<a href=index.php class=button>Sign Out</a>";
     }
+    
     /**
     * Returns all the movies in the Database based off of @param value
     * Images are linked so that when you click on an image, you are 
@@ -197,7 +225,7 @@
     }
     echo "<td>";
     $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
-    $value = $movie["movieId"];
+    $value = $movie["id"];
     $link = "Forums.php?type=2&movieid=$value";
     echo "<a href=$link><img src=$path></a><br>";
     echo $movie['title']."<br>";

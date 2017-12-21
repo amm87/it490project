@@ -10,7 +10,7 @@ private $registerdb;
     */
 public function __construct()
 {
-	$this->registerdb = new mysqli('127.0.0.1','root','abc123','it490');
+	$this->registerdb = new mysqli('192.168.1.150','root','123456','login');
 
 	if ($this->registerdb->connect_errno != 0)
 	{

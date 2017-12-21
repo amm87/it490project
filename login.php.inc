@@ -40,13 +40,21 @@ public function validateLogin($username,$password)
 		//echo "checking password for $username".PHP_EOL;
 		if ($row["password"] == $pw)
 		{
-                    $_SESSION['userid'] = $row['id'];
                     return true;
 		}
 	}
 	
       echo "wrong pass";
       return false; 
+}
+
+public function get_id($username)
+{
+    $un = $this->logindb->real_escape_string($username);
+	$statement = "select * from users where username = '$un';";
+	$response = $this->logindb->query($statement);
+	$result = $response->fetch_assoc();
+	return $result['id'];
 }
 }
 ?>

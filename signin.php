@@ -8,7 +8,7 @@ require_once('rabbitMQLib.inc');
 $name = $_POST["user"]; 
 $pass = $_POST["password"];
 
-
+$db = new logindb();
 $client = new rabbitMQClient("testRabbitMQ.ini","testServer");
 $client_2 = new rabbitMQClient("rabbitMQMail.ini", "testServer");
 
@@ -34,9 +34,10 @@ $request_2["name"] = $name;
 $request_2["email_address"] = "ml394@njit.edu";
 $client_2->publish($request_2);
 
-$payload = json_encode($response);
+//$payload = $response;
 //echo $payload;
-if($payload =="true" ){
+if($response == true ){
+    $_SESSION['id'] = $db->get_id($name);
     echo header("Location: MainPage.php");
 }
 
