@@ -182,28 +182,27 @@
       $exclude = array();
       $counter = 0;
      
+      if ($range === "week")
+      { 
+        $startTime = strtotime("monday this week");
+        $endTime  =  strtotime("sunday this week");
+      }
+      else if ($range === "month")
+      {
+        $startTime = strtotime("first day of this month");
+        $endTime  =  strtotime("last day of this month");
+      }
+      else 
+      {
+        $startTime = strtotime("first day of January this year");
+        $endTime  =  strtotime("last day of December this year");
+      }
       while ($movie = $result->fetch_assoc())
       {
         $resultArray[$counter] = $movie;
         $time = strtotime($movie['releaseDate']);
-        
-        if ($range === "week")
-        { 
-          $startTime = strtotime("monday this week");
-          $endTime  =  strtotime("sunday this week");
-        }
-        else if ($range === "month")
-        {
-          $startTime = strtotime("first day of this month");
-          $endTime  =  strtotime("last day of this month");
-        }
-        else if ($range === "year")
-        {
-          $startTime = strtotime("first day of January this year");
-          $endTime  =  strtotime("last day of December this year");
-        }
 
-        if (($time >= $startTime) && ($time <= $endTime))
+        if (($time <= $startTime) && ($time >= $endTime))
         {
           $exclude[$counter] = $movie;
         }
