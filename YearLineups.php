@@ -57,7 +57,7 @@
             }
     </style>
     <meta charset="utf-8" />
-    <a href="Mainpage.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
+    <a href="MainPage.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
    
 </head>
 
