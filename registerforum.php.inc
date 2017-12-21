@@ -13,7 +13,7 @@ private $registerdb;
     */
 public function __construct()
 {
-	$this->registerdb = new mysqli("192.168.1.150","root","123456","it490");
+	$this->registerdb = new mysqli("192.168.1.140","root","123456","it490project");
 
 	if ($this->registerdb->connect_errno != 0)
 	{
@@ -31,10 +31,14 @@ public function getComments($movieId)
     {
       $query = "select * from moviecomments where movieid = '$movieId'";
       $result = $this->registerdb->query($query);
+      if (!$result)
+      {
+        return 0;
+      }
       while ($row = $result->fetch_assoc())
       {
-        echo $row['comment'];
         echo "<br>";
+        echo $row['comment'];
         echo "<br>";
       }
     }
