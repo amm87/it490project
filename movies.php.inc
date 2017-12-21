@@ -12,7 +12,7 @@ class moviedb
     */
     public function __construct()
     {
-      $this->database = new mysqli('192.168.1.150', 'root', '123456', 'it490');
+      $this->database = new mysqli('192.168.1.142', 'root', '123456', 'it490');
       $this->logdb = new mysqli('192.168.1.150', 'root', '123456', 'login');
       
       if ($this->database->connect_errno > 0)
