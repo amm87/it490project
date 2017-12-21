@@ -3,6 +3,7 @@ include_once('logging.php.inc');
 class moviedb
   {
     private $database;
+    private $logdb;
     private $client;
 
     /**
@@ -12,6 +13,7 @@ class moviedb
     public function __construct()
     {
       $this->database = new mysqli('192.168.1.150', 'root', '123456', 'it490');
+      $this->logdb = new mysqli('192.168.1.150', 'root', '123456', 'login');
       
       if ($this->database->connect_errno > 0)
       {
@@ -22,6 +24,11 @@ $logger = new errorLogger(getcwd()."/error.log");
 $request = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "."Error occured in ".__FILE__." LINE ".__LINE__." Failed to connect to DB".PHP_EOL);
 $response = $client->publish($request);
 
+        echo "Could not connect to database".PHP_EOL;
+      }
+      
+        if ($this->logdb->connect_errno > 0)
+      {
         echo "Could not connect to database".PHP_EOL;
       }
     }    
@@ -108,18 +115,33 @@ $response = $client->publish($request);
     * @param name is the name of the user with an account
     * @param email_address is the email of that user
     */
-    public function sendEmail($name, $email_address)
+    public function sendEmail()
     {
-      $query = "select * from movies";
+        
+      $query = "select * from movies;";
+      $query_2 = "select * from users;";
       $result = $this->database->query($query);
+    $result_2 = $this->logdb->query($query_2);
+        
       $counter = 0;
       $resultArray = array();
       $request = array();
-      $to = $email_address;
       $from = "shannon@shannon-virtualbox";
       $headers = "From: $from\r\n";
       $headers .= "Content-type: text/html\r\n";
       $msg = "<html>"."<body>";
+      
+      if (!$result)
+      {
+         
+        return 0;
+      }
+      if (!$result_2)
+      {
+       
+        return 0;
+      }
+     
         while ($movie = $result->fetch_assoc())
         {
             $time = strtotime($movie['releaseDate']);
@@ -135,9 +157,15 @@ $response = $client->publish($request);
              $msg = $msg."<img src=$path></a><br>";
         }
         }
-        $msg = $msg."</body>"."</html>";
-        $msg = wordwrap($msg,70);
-        mail($to,"My subject",$msg, $headers);
+          $msg = $msg."</body>"."</html>";
+            $msg = wordwrap($msg,70);
+            
+        while ($user = $result_2->fetch_assoc())
+        {
+            $to = $user["email"];
+            
+            mail($to,"My subject",$msg, $headers);
+        }
     }
 
     /**

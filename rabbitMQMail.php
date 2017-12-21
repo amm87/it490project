@@ -50,10 +50,10 @@ function doRegister($username,$password,$fname,$lname,$email){
 
 }
 
-function doEmail($name, $email_address)
+function doEmail()
 {
     $database = new moviedb();
-    $database->sendEmail($name, $email_address);
+    $database->sendEmail();
 }
 
 function doSearch($moviename){
@@ -72,7 +72,7 @@ function requestProcessor($request)
   }
   if ($request['type'] == "email")
   {
-    doEmail($request["name"], $request["email_address"]);
+    doEmail();
   }
   return array("returnCode" => '0', 'message'=>"Server received request and processed");
 }
