@@ -130,8 +130,13 @@
         </tr>
     </table>
     <br /><br />
-    <p id="demo"><font size="5" color="red">All Time Bests</font></p>
-    
+    <p id="demo"><font size="5" color="red">Theatre List</font>
+    <br><br><br>
+     <?php
+            require_once("TheList.php");
+        ?>
+    </p>
+        
     <?php
     /**
     * Get the name of the signed in user
