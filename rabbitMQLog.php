@@ -17,7 +17,7 @@ function requestProcessor($request)
    
    echo exec('scp error.log anthony@192.168.1.151:/home/anthony/git/it490project');
   
-    echo exec('scp error.log brian@192.168.1.140:/home/brian/git/it490project');
+    echo exec('scp error.log brian@192.168.1.142:/home/brian/git/it490project');
     
     echo exec('scp error.log yaghsha@192.168.1.120:/home/yaghsha/git/project490/it490project');
   
