@@ -36,15 +36,20 @@ $request['email']= $email;
 $response = $client->send_request($request);
 //$response = $client->publish($request);
 
-$payload = json_encode($response);
-echo $payload;
-if($payload =="true" ){
-    echo "ACCOUNT CREATED BOIII";
+//payload = json_encode($response);
+if($response == true ){
+   echo "<script language='JavaScript'>
+	    alert('Your account was created.')
+	    location='index.php'
+	    </script>";
 }
 
 else{
     
-    echo "Username taken dawg";
+    echo "<script language='JavaScript'>
+	    alert('Username taken')
+	    location='signup.html'
+	    </script>";
 }
 
 ?>
