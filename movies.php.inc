@@ -199,16 +199,17 @@
       }
       while ($movie = $result->fetch_assoc())
       {
-        $resultArray[$counter] = $movie;
+        
         $time = strtotime($movie['releaseDate']);
 
-        if (($time <= $startTime) || ($time >= $endTime))
+        if (($time >= $startTime) && ($time <= $endTime))
         {
-          $exclude[$counter] = $movie;
+          $resultArray[$counter] = $movie;
+          $counter++;
         }
-        $counter++;
+       
       }
-     return $this->displayMovies($resultArray, $exclude);
+     return $this->displayMovies($resultArray, array());
     }
 
     public function moviesByRating($type)
