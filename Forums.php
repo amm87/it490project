@@ -17,6 +17,23 @@
             margin: 4px 2px;
             cursor: pointer;
         }
+        .input[type=text] {
+            width: 180px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+            background-color: white;
+            background-image: url('searchicon.png');
+            background-position: 10px 10px;
+            background-repeat: no-repeat;
+            padding: 12px 20px 12px 40px;
+            -webkit-transition: width 0.4s ease-in-out;
+            transition: width 0.4s ease-in-out;
+            }
+            .input[type=text]:focus {
+                width: 85%;
+            }
         .dropbtn {
             background-color: skyblue;
             color: red;
@@ -66,6 +83,20 @@
     <p align="right" id="demo1">
        
     </p>
+     <script>
+        function submitter()
+        {
+            var para = document.createElement("P");
+            var t = document.createTextNode(document.getElementById("typer").value);
+            var link = window.location.href;
+            var url = new URL(link);
+            var params = url.searchParams.get("movieid");
+            window.location.href = "Forums.php?type=1&name=" + document.getElementById("typer").value+"&movieid="+params;
+            document.getElementById("typer").value="";
+            para.appendChild(t);
+            document.getElementById("demo").appendChild(para);
+        }
+    </script>
     <table bgcolor="skyblue">
 
         <tr>
@@ -137,7 +168,6 @@
             require_once("registerforum.php.inc");
             $db = new forumsdb();
             $db2 = new moviedb();
-
             $type = $_GET['type'];
             if ($type === "1")
             {
@@ -151,10 +181,11 @@
             {
  	      $movieid = $_GET['movieid'];
               //$db2->showMovieInfo($movieid);
-
               $db->getComments($movieid);
             }
         ?>
+         <input type="text" id="typer" placeholder="Type Here" style="width: 1400px;" accesskey="Enter">
+        <button type="submit" name="submitting" onclick="submitter()">Enter</button>
         </p>
     
     <?php
