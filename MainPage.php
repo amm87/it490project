@@ -130,7 +130,47 @@
         </tr>
     </table>
     <br /><br />
-    <p id="demo"><font size="5" color="red">Main Page</font></p>
+    <p id="demo"><font size="5" color="red">Main Page</font>
+    
+    <?php
+    echo "<br><br><br><br>";
+    require_once('get_host_info.inc');
+    require_once('rabbitMQLib.inc');
+    $request = array();
+    $request['type'] = "upcoming";
+    $request['range'] = "week";
+    $client = new rabbitMQClient("testRabbitMQ.ini", "testServer");
+    $response = $client->send_request($request);
+    $r = json_decode($response, true);
+    echo "<table>";
+    $counter = 0;
+    foreach ($r as $movie)
+    {
+    if ($counter === 0)
+    {
+        echo "<tr>";
+    }
+    else if ($counter === 4)
+    {
+        echo "</tr>";
+        $counter = 0;
+    }
+    echo "<td>";
+    $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
+    $value = $movie["id"];
+    $link = "Forums.php?type=2&movieid=$value";
+    echo "<a href=$link><img src=$path></a><br>";
+    $link_2 = "Watchlist.php?movie_id=".$value;
+    echo "<a href=$link_2>".$movie['title']."</a><br>";
+    echo $movie['releaseDate'];
+    echo "</td>";
+    
+    $counter++;
+    }
+    echo "</table>";
+    $payload = json_encode($response);
+    ?>
+    </p>
     
     <?php
     /**
@@ -138,6 +178,9 @@
     */
     function naming()
     {
+    session_start();
+    echo $_SESSION['user'];
+    
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "<a href=index.php class=button>Sign Out</a>";
     }
@@ -173,12 +216,13 @@
         echo "</tr>";
         $counter = 0;
     }
-    echo "<td>";
+     echo "<td>";
     $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
     $value = $movie["id"];
     $link = "Forums.php?type=2&movieid=$value";
     echo "<a href=$link><img src=$path></a><br>";
-    echo $movie['title']."<br>";
+    $link_2 = "Watchlist.php?movie_id=".$value;
+    echo "<a href=$link_2>".$movie['title']."</a><br>";
     echo $movie['releaseDate'];
     echo "</td>";
     

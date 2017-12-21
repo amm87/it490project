@@ -181,7 +181,6 @@
     {
     session_start();
     echo $_SESSION['user'];
-    echo $_SESSION["id"];
     
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "<a href=index.php class=button>Sign Out</a>";
@@ -223,7 +222,8 @@
     $value = $movie["id"];
     $link = "Forums.php?type=2&movieid=$value";
     echo "<a href=$link><img src=$path></a><br>";
-    echo $movie['title']."<br>";
+    $link_2 = "Watchlist.php?movie_id=".$value;
+    echo "<a href=$link_2>".$movie['title']."</a><br>";
     echo $movie['releaseDate'];
     echo "</td>";
     

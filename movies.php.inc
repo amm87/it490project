@@ -192,7 +192,7 @@
         $startTime = strtotime("first day of this month");
         $endTime  =  strtotime("last day of this month");
       }
-      else 
+      else
       {
         $startTime = strtotime("first day of January this year");
         $endTime  =  strtotime("last day of December this year");
