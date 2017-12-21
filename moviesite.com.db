@@ -1,0 +1,14 @@
+$TTL 3D
+@ IN SOA anthony.moviesite.com. admin.moviesite.com. (
+
+2007031001;
+28800;
+3600;
+604800;
+38400;
+);
+
+moviesite.com. IN NS anthony.moviesite.com.
+anthony        IN A  192.168.1.151
+website	       IN A  192.168.1.150
+website	       IN A  192.168.1.130
