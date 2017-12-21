@@ -221,12 +221,13 @@
         echo "</tr>";
         $counter = 0;
     }
-    echo "<td>";
+   echo "<td>";
     $path = "http://image.tmdb.org/t/p/w185/".$movie["imagePath"];
     $value = $movie["id"];
     $link = "Forums.php?type=2&movieid=$value";
     echo "<a href=$link><img src=$path></a><br>";
-    echo $movie['title']."<br>";
+    $link_2 = "Watchlist.php?movie_id=".$value;
+    echo "<a href=$link_2>".$movie['title']."</a><br>";
     echo $movie['releaseDate'];
     echo "</td>";
     
