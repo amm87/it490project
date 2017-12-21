@@ -202,7 +202,7 @@
         $resultArray[$counter] = $movie;
         $time = strtotime($movie['releaseDate']);
 
-        if (($time <= $startTime) && ($time >= $endTime))
+        if (($time <= $startTime) || ($time >= $endTime))
         {
           $exclude[$counter] = $movie;
         }
