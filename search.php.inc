@@ -17,7 +17,7 @@ public function __construct()
 
 	if ($this->db->connect_errno != 0)
 	{
-		echo "Error connecting to database: ".$this->searchdb>connect_error.PHP_EOL;
+		echo "Error connecting to database: ".$this->db>connect_error.PHP_EOL;
 		exit(1);
 	}
 	echo "correctly connected to database".PHP_EOL;

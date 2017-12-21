@@ -57,7 +57,7 @@
             }
     </style>
     <meta charset="utf-8" />
-    <a href="AllTime.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
+    <a href="MainPage.php" style="text-decoration:none;"><font color='red' size='5'>The Movie Database</font></a>
    
 </head>
 
@@ -82,7 +82,7 @@
                 <div class="dropdown">
                     <button class="dropbtn"><b>Released</b></button>
                     <div class="dropdown-content">
-                        <a href="InTheatres.php"><font size="2">In Theatres</font></a>
+                        <a href="TheatreList.php"><font size="2">Theatre List</font></a>
                         <a href="Mapview.php"><font size="2">Map View</font></a>
                     </div>
             </td>
@@ -115,18 +115,9 @@
             </td>
             <td style="padding:0 15px 0 20px;">
                 <div class="dropdown">
-                    <button class="dropbtn"><b>Ratings</b></button>
-                    <div class="dropdown-content">
-                        <a href="Top.php"><font size="2">Top Rated This Year</font></a>
-                        <a href="AllTime.php"><font size="2">All Time Bests</font></a>
-                    </div>
-            </td>
-            <td style="padding:0 15px 0 20px;">
-                <div class="dropdown">
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
                         <a href="Watchlist.php?movie_id=-1"><font size="2">Watchlist</font></a>
-                        <a href="Notification.php"><font size="2">Notifications</font></a>
                     </div>
             </td>
             <td style="padding:10px 40px 0px 20px;">

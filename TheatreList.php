@@ -143,6 +143,9 @@
     */
     function naming()
     {
+    session_start();
+    echo $_SESSION['user'];
+    
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "<a href=index.php class=button>Sign Out</a>";
     }

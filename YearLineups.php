@@ -131,7 +131,7 @@
         </tr>
     </table>
     <br /><br />
-    <p id="demo"><font size="5" color="red">This Month</font>
+    <p id="demo"><font size="5" color="red">Year Lineups</font>
     <?php
     echo "<br><br><br><br>";
     require_once('get_host_info.inc');
@@ -181,7 +181,6 @@
     {
     session_start();
     echo $_SESSION['user'];
-    echo $_SESSION["id"];
     
     echo "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;";
     echo "<a href=index.php class=button>Sign Out</a>";

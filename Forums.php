@@ -118,7 +118,6 @@
                     <button class="dropbtn"><b>My Account</b></button>
                     <div class="dropdown-content">
                         <a href="Watchlist.php?movie_id=-1"><font size="2">Watchlist</font></a>
-                        <a href="Notification.php"><font size="2">Notifications</font></a>
                     </div>
             </td>
             <td style="padding:10px 40px 0px 20px;">
