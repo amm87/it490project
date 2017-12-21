@@ -168,8 +168,9 @@
 
     echo "<td>";
     $path = "http://image.tmdb.org/t/p/w185/".$payload["imagePath"];
+    $value = $payload["id"];
     $link = "Forums.php?type=2&movieid=$value";
-    echo "<a href=$link><img src=$path></a><br>";
+    echo "<br><a href=$link><img src=$path></a><br>";
     echo $payload['title']."<br>";
     echo $payload['releaseDate'];
     echo "</td>";
