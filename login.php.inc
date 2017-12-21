@@ -1,4 +1,6 @@
+
 <?php
+include_once('logging.php.inc');
 class loginDB
 {
 
@@ -17,6 +19,12 @@ public function __construct()
 	if ($this->logindb->connect_errno != 0)
 	{
 		echo "Error connecting to database: ".$this->logindb->connect_error.PHP_EOL;
+		$client = new rabbitMQClient("rabbitMQLog.ini","testServer");
+                $file = __FILE__." ";
+                $logger = new errorLogger(getcwd()."/error.log");
+                $request = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "."Error occured in ".__FILE__." LINE ".__LINE__." Failed to connect to DB".PHP_EOL);
+                $response = $client->publish($request);
+
 		exit(1);
 	}
 	echo "correctly connected to database".PHP_EOL;

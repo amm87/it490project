@@ -1,5 +1,8 @@
 #!/usr/bin/php
+
+
 <?php
+require_once('logging.php.inc');
 require_once('rabbitMQLib.inc');
 $client = new rabbitMQClient("rabbitMQLog.ini","testServer");
 echo "Install, Rollback or package".PHP_EOL;
@@ -32,6 +35,16 @@ shell_exec('/home/anthony/git/it490project/install.sh');
 }
 elseif($input == 'rollback'){
 shell_exec('/home/anthony/git/it490project/rollback.sh');
+
+}
+
+else{
+$client = new rabbitMQClient("rabbitMQLog.ini","testServer");
+$file = __FILE__." ";
+$logger = new errorLogger(getcwd()."/error.log");
+$request = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "."Error occured in ".__FILE__." LINE ".__LINE__." FAILED TO CHOOSE OPTION".PHP_EOL);
+$response = $client->publish($request);
+
 
 }
 

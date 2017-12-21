@@ -22,17 +22,17 @@ else
 }
 $_SESSION["user"] = $name;
 $request = array();
-$request_2 = array();
+//$request_2 = array();
 $request['type'] = "login";
 $request['username'] = $name;
 $request['password'] = hashPassword($pass);
 $request['message'] = $msg;
 $response = $client->send_request($request);
 
-$request_2["type"] = "email";
-$request_2["name"] = $name;
-$request_2["email_address"] = "ml394@njit.edu";
-$client_2->publish($request_2);
+//$request_2["type"] = "email";
+//$request_2["name"] = $name;
+//$request_2["email_address"] = "ml394@njit.edu";
+//$client_2->publish($request_2);
 
 //$payload = $response;
 //echo $payload;

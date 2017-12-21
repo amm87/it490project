@@ -1,5 +1,6 @@
 <?php
-  class moviedb
+include_once('logging.php.inc');
+class moviedb
   {
     private $database;
     private $client;
@@ -14,6 +15,13 @@
       
       if ($this->database->connect_errno > 0)
       {
+      
+        $client = new rabbitMQClient("rabbitMQLog.ini","testServer");
+$file = __FILE__." ";
+$logger = new errorLogger(getcwd()."/error.log");
+$request = $logger ->logArray( date('m/d/Y h:i:s a', time())." ".gethostname()." "."Error occured in ".__FILE__." LINE ".__LINE__." Failed to connect to DB".PHP_EOL);
+$response = $client->publish($request);
+
         echo "Could not connect to database".PHP_EOL;
       }
     }    
